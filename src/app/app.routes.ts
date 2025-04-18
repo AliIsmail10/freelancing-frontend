@@ -7,15 +7,14 @@ export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
 
-    // {path: 'profile', loadComponent: () => import('./Layout/Pages/profile/profile.component').then(m => m.ProfileComponent)},
 
     {
         path: 'home2',
         component: Home2Component, 
         children: [
             {path: 'profile', loadComponent: () => import('./Layout/Pages/profile/profile.component').then(m => m.ProfileComponent)},
-
-        ]
+         
+        ]  
       },
 
 ];
