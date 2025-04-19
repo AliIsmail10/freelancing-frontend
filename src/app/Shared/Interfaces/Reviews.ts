@@ -1,10 +1,10 @@
 export interface Review {
-    id: number
+    id?: number
     rating: number
     comment: string
     revieweeId: string
-    revieweeName: string
+    revieweeName?: string
     reviewerId: string
-    reviewerName: string
+    reviewerName?: string
   }
   

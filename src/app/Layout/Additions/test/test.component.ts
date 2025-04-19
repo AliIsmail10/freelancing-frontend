@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ReviewService } from '../../../Shared/Services/Review/review.service';
 import { Review } from '../../../Shared/Interfaces/Reviews';
+import { NotificationsService } from '../../../Shared/Services/Notifications/notifications.service';
 
 @Component({
   selector: 'app-test',
@@ -10,18 +11,6 @@ import { Review } from '../../../Shared/Interfaces/Reviews';
 })
 export class TestComponent {
 
-  constructor (private _Review:ReviewService) { }
-  ngOnInit(): void {
-    console.log("Test component initialized");
+  constructor () { }
   
-    this.getReviewById(4);
-  }
-  getReviewById(id: number): Review {
-    let review: Review | undefined;
-    this._Review.getReviewById(id).subscribe((data) => {
-      review = data;
-      console.log("Review by ID:", review);
-    });
-    return review as Review; 
-  }
 }
