@@ -44,6 +44,9 @@ export class HomeNavbarComponent {
         this.authService.deCodeUserData(response.token);
   
         console.log('Token =>>>:', response.token); 
+        localStorage.setItem('userToken', response.token);
+        document.cookie = `userToken=${response.token}; path=/; secure; samesite=Lax`;
+
         this.router.navigate(['/home2/profile']);
       },
       error: (err) => {
@@ -52,6 +55,4 @@ export class HomeNavbarComponent {
       }
     });
   }
-  
-  
 }

@@ -36,7 +36,6 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('userToken');
-    localStorage.removeItem('currentPage');
     this.userData.next(null);
     this._isLoggedIn.set(false);
     this._Router.navigate(['/login']);
@@ -66,6 +65,5 @@ export class AuthService {
       this.logout();
     }
   }
-  
 
 }
