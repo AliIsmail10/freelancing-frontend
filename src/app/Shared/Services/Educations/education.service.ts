@@ -25,7 +25,7 @@ export class EducationService {
     return this._HttpClient.delete<void>(`${this.apiUrl}Educations/${id}`);
   }
 
-  addEducation(education: Education): Observable<Education> {
+  CreateEducation(education: Education): Observable<Education> {
     return this._HttpClient.post<Education>(`${this.apiUrl}Educations`, education);
   }
 
@@ -35,10 +35,10 @@ export class EducationService {
 
   // Get all educations for a specific user by userId dy zyada lw 7bena ndef function f el service f el backend w b3den ndefha hna
   getEducationByUserId(userId: string): Observable<Education[]> {
-    return this._HttpClient.get<Education[]>(`${this.apiUrl}Educations/active/${userId}`);
+    return this._HttpClient.get<Education[]>(`${this.apiUrl}Educations/${userId}`);
   }
 
   getEducationByUseName(username: string): Observable<Education[]> {
-    return this._HttpClient.get<Education[]>(`${this.apiUrl}Educations/user/${username}`);
+    return this._HttpClient.get<Education[]>(`${this.apiUrl}Educations/freelancer/${username}`);
   }
 }
