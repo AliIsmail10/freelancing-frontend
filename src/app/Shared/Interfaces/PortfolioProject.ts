@@ -1,4 +1,4 @@
-import { PortfolioProjectImage } from "./PortfolioImage";
+import { PortfolioImage } from "./PortfolioImage";
 
 export interface portfolioProject
  {
@@ -7,7 +7,7 @@ export interface portfolioProject
    description: string;
    createdAt: string; 
    freelancerId: string;
-   images: PortfolioProjectImage[];
+   images: PortfolioImage[];
  }
 
  
