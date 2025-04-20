@@ -16,15 +16,13 @@ export class PortfolioImageService {
   getImagesByProjectId():Observable<PortfolioImage[]> {
     return this.myClient.get<PortfolioImage[]>(`${this.apiURL}`);
   }
-  // getPortfolioProjectImageById(id: number):Observable<PortfolioImage> {
-  //   return this.myClient.get<PortfolioImage>(`${this.apiURL}/${id}`);
-  // }
-  UploadImage(data: any):Observable<PortfolioImageService> {
-    return this.myClient.post<PortfolioImageService>(`${this.apiURL}/upload` , data);
+  
+  UploadImage(file: File):Observable<PortfolioImageService> {
+    const formData = new FormData();
+    formData.append('ImageFile', file, file.name);
+    return this.myClient.post<PortfolioImageService>(`${this.apiURL}/upload` , formData);
   }
-  // updatePortfolioProjectImage(data: any):Observable<PortfolioImageService> {
-  //   return this.myClient.put<PortfolioImageService>(this.apiURL , data);
-  // }
+ 
   deletePortfolioProjectImage(id: number):Observable<PortfolioImageService> {
     return this.myClient.delete<PortfolioImageService>(`${this.apiURL}/${id}`);
   }
