@@ -38,7 +38,7 @@ export class EducationService {
     return this._HttpClient.get<Education[]>(`${this.apiUrl}Educations/${userId}`);
   }
 
-  getEducationByUseName(username: string): Observable<Education[]> {
+  getEducationByUserName(username: string): Observable<Education[]> {
     return this._HttpClient.get<Education[]>(`${this.apiUrl}Educations/freelancer/${username}`);
   }
 }

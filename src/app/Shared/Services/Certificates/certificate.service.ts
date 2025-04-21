@@ -33,10 +33,10 @@ export class CertificateService {
   }
 
   getCertificateByUserId(userId: string): Observable<Certificate[]> {
-    return this._HttpClient.get<Certificate[]>(`${this.apiUrl}Certificates/active/${userId}`);
+    return this._HttpClient.get<Certificate[]>(`${this.apiUrl}Certificates/freelancer/${userId}`);
   }
 
-  getCertificateByUseName(username: string): Observable<Certificate[]> {
-    return this._HttpClient.get<Certificate[]>(`${this.apiUrl}Certificates/user/${username}`);
+  getCertificateByUserName(username: string): Observable<Certificate[]> {
+    return this._HttpClient.get<Certificate[]>(`${this.apiUrl}Certificates/freelancer/${username}`);
   }
 }

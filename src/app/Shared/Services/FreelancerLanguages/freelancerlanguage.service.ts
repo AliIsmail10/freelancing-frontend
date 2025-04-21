@@ -35,10 +35,10 @@ export class FreelancerlanguageService {
 
   // Get all freelancerLanguages for a specific user by userId dy zyada lw 7bena ndef function f el service f el backend w b3den ndefha hna
   getFreelancerLanguageByUserId(userId: string): Observable<FreelancerLanguage[]> {
-    return this._HttpClient.get<FreelancerLanguage[]>(`${this.apiUrl}FreelancerLanguages/active/${userId}`);
+    return this._HttpClient.get<FreelancerLanguage[]>(`${this.apiUrl}FreelancerLanguages/freelancer/${userId}`);
   }
 
-  getFreelancerLanguageByUseName(username: string): Observable<FreelancerLanguage[]> {
-    return this._HttpClient.get<FreelancerLanguage[]>(`${this.apiUrl}FreelancerLanguages/user/${username}`);
+  getFreelancerLanguageByUserName(username: string): Observable<FreelancerLanguage[]> {
+    return this._HttpClient.get<FreelancerLanguage[]>(`${this.apiUrl}FreelancerLanguages/freelancer/${username}`);
   }
 }
