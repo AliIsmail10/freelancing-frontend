@@ -9,5 +9,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { errorInterceptor } from './Shared/Interceptors/Error/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
+
   providers: [provideHttpClient(withFetch(),withInterceptors([headerInterceptor,errorInterceptor])),provideAnimations(),provideToastr(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+
 };
+

@@ -22,7 +22,7 @@ export class HomeNavbarComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      usernameoremail: ['', [Validators.required, Validators.email]],
+      usernameoremail: ['', [Validators.required]],
       loginPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
     
@@ -40,9 +40,8 @@ export class HomeNavbarComponent {
     this.authService.login(credentials).subscribe({
       next: (response: { token: string }) => {
         this.isLoading = false;
-        
         this.authService.deCodeUserData(response.token);
-  
+        
         console.log('Token =>>>:', response.token); 
         localStorage.setItem('userToken', response.token);
         document.cookie = `userToken=${response.token}; path=/; secure; samesite=Lax`;
@@ -50,6 +49,7 @@ export class HomeNavbarComponent {
         this.router.navigate(['/home2/profile']);
       },
       error: (err) => {
+        console.log(err);
         this.isLoading = false;
         this.errorMessage = err.message;
       }
