@@ -91,29 +91,45 @@
                                 <div class="wt-loginformhold">
                                     <div class="wt-loginheader">
                                         <span>Login</span>
-                                        <a href="javascript:;"><i class="fa fa-times"></i></a>
+                                        <a><i class="fa fa-times"></i></a>
                                     </div>
                                     <form [formGroup]="loginForm" (submit)="onSubmit()" class="wt-formtheme wt-loginform do-login-form">
                                         <fieldset>
-                                            <div class="form-group">
-                                                <input type="text" name="usernameoremail" class="form-control" placeholder="Email" formControlName="usernameoremail">
+                                          <div class="form-group">
+                                            <input type="text" name="Usernameoremail" class="form-control" placeholder="Email" formControlName="Usernameoremail">
+                                            <div *ngIf="loginForm.get('Usernameoremail')?.invalid && loginForm.get('Usernameoremail')?.touched" class="text-danger">
+                                              Username or email is required
                                             </div>
-                                            <div class="form-group">
-                                                <input type="password" name="loginPassword" class="form-control" placeholder="Password" formControlName="loginPassword">
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="password" name="loginPassword" class="form-control" placeholder="Password" formControlName="loginPassword">
+                                            <div *ngIf="loginForm.get('loginPassword')?.invalid && loginForm.get('loginPassword')?.touched" class="text-danger">
+                                              Password is required and must be at least 6 characters
                                             </div>
-                                            <div class="wt-logininfo">
-                                                <a (click)="onSubmit()" class="wt-btn do-login-button">Login</a>
-                                                <span class="wt-checkbox">
-                                                    <input id="wt-login" type="checkbox" name="rememberme">
-                                                    <label for="wt-login">Keep me logged in</label>
-                                                </span>
+                                          </div>
+                                          <div *ngIf="errorMessage" class="alert alert-danger">
+                                            {{ errorMessage }}
+                                          </div>
+                                          <div class="wt-logininfo">
+                                            <button type="submit" class="wt-btn do-login-button">Login</button>
+                                         
+                                            <span class="wt-checkbox">
+                                              <input id="wt-login" type="checkbox" name="rememberme">
+                                              <label for="wt-login">Keep me logged in</label>
+                                            </span>
+                                            <div class="wt-loginwith social pt-5" (click)="  ExternalLogin()
+                                            ">
+                                                <a class="wt-loginwithgoogle m-3"><i class="fab fa-google"></i></a>
+                                                External Login
+
                                             </div>
+                                          </div>
                                         </fieldset>
                                         <div class="wt-loginfooterinfo">
-                                            <a href="javascript:;" class="wt-forgot-password">Forgot password?</a>
-                                            <a href="register.html">Create account</a>
+                                          <a class="wt-forgot-password">Forgot password?</a>
+                                          <a routerLink="/register">Create account</a>
                                         </div>
-                                    </form>
+                                      </form>
                                     <form class="wt-formtheme wt-loginform do-forgot-password-form wt-hide-form">
                                         <fieldset>
                                             <div class="form-group">
@@ -126,12 +142,12 @@
                                         </fieldset>
                                         <div class="wt-loginfooterinfo">
                                             <a href="javascript:void(0);" class="wt-show-login">Login</a>
-                                            <a href="register.html">Create account</a>
+                                            <a routerLink="/register">Create account</a>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <a href="register.html" class="wt-btn">Join Now</a>
+                            <a routerLink="/register" class="wt-btn">Join Now</a>
                         </div>
                        <app-usernav></app-usernav>
                     </div>

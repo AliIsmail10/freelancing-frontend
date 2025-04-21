@@ -21,6 +21,7 @@
     "@fortawesome/fontawesome-free": "^6.7.2",
     "bootstrap": "^5.3.5",
     "chosen-js": "^1.8.7",
+    "date-fns": "^4.1.0",
     "isotope-layout": "^3.0.6",
     "jquery": "^3.7.1",
     "jquery-appear-original": "^0.6.2",

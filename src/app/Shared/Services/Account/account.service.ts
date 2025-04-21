@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/environment';
 import { AppUsers, ClientsFilter, ClientsView, ClientView, CreateAdminDTO, EditProfileDTO, FilteredClients, FilteredFreelancers, ForgotPasswordDTO, Freelancers, FreelancersFilter, FreelancerView, IdentityVerificationRequest, LoginDTO, RefreshTokenDTO, RegisterDTO, ResetPasswordDTO, SingularFreelancer, Tokens, UserRole, UsersRequestingVerificaiton, VerificationDecision } from '../../Interfaces/Account';
 import { Observable } from 'rxjs';
-import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -183,31 +182,10 @@ export class AccountService {
     }
 
 
-    Register(registerData: RegisterDTO): Observable<string> {
-      const formData = new FormData();
-      
-      formData.append('firstname', registerData.firstname);
-      formData.append('lastname', registerData.lastname);
-      formData.append('cityId', registerData.cityId.toString());
-      formData.append('userName', registerData.userName);
-      formData.append('email', registerData.email);
-      formData.append('phoneNumber', registerData.phoneNumber);
-      formData.append('password', registerData.password);
-      formData.append('role', registerData.role);
-      
-      if (registerData.confirmPassword) {
-          formData.append('confirmPassword', registerData.confirmPassword);
-      }
-      
-      formData.append('dateOfBirth', registerData.dateOfBirth);
-      
-      if (registerData.profilePicture) {
-          formData.append('profilePicture', registerData.profilePicture);
-      }
-  
-      return this._HttpClient.post<string>(`${this.apiUrl}/Register`, formData);
-  }
-
+    Register(formData: FormData): Observable<any> {
+      return this._HttpClient.post<any>(`${this.apiUrl}/Register`, formData);
+    }
+    
 
 
   Login(dto:LoginDTO):Observable<Tokens>{
