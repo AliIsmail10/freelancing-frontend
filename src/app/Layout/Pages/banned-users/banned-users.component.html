@@ -1,0 +1,93 @@
+<main id="wt-main" class="wt-main wt-haslayout">
+				<!--Register Form Start-->
+				<section class="wt-haslayout wt-dbsectionspace">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 float-right">
+							<div class="wt-dashboardbox wt-dashboardinvocies">
+								<div class="wt-dashboardboxtitle wt-titlewithsearch">
+									<h2>Invocies</h2>
+									<form class="wt-formtheme wt-formsearch">
+										<fieldset>
+											<div class="form-group">
+												<input type="text" name="Search" class="form-control" placeholder="Search Here" (input)="search(searched.value)" #searched>
+												<a class="wt-searchgbtn">
+                          <i class="lnr lnr-magnifier" (click)="search(searched.value)">
+                          </i>
+                        </a>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+								<div class="wt-dashboardboxcontent wt-categoriescontentholder wt-categoriesholder">
+									<table class="wt-tablecategories">
+										<thead>
+											<tr>
+												<th>
+													<span class="wt-checkbox">
+														<input id="wt-name" type="checkbox" name="head">
+														<label for="wt-name"></label>
+													</span>
+												</th>
+												<th>Name</th>
+												<th>Ban Date</th>
+												<th>Ban EndDate</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+                      @for (banuser of searchedbans; track $index) {
+                        <tr>
+                          <td>
+                            <span class="wt-checkbox">
+                              <input id="wt-namea" type="checkbox" name="head">
+                              <label for="wt-namea"></label>
+                            </span>
+                          </td>
+                          <td>{{banuser.bannedUserName}}</td>
+                          <td>{{banuser.banDate | date}}</td>
+                          <td>{{banuser.banEndDate| date}}</td>
+                          <td>{{banuser.banEndDate| date}}</td>
+                          <td>
+                            <div class="wt-actionbtn">
+                              <a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo">view</a>
+                              <a href="javascript:void(0);" class="wt-deleteinfo">Print</a>
+                            </div>
+                          </td>
+                        </tr>
+                      }
+										</tbody>
+									</table>
+									<nav class="wt-pagination">
+										<ul>
+											<li class="wt-prevpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-left"></i></a></li>
+											<li><a href="javascrip:void(0);">1</a></li>
+											<li><a href="javascrip:void(0);">2</a></li>
+											<li><a href="javascrip:void(0);">3</a></li>
+											<li><a href="javascrip:void(0);">4</a></li>
+											<li><a href="javascrip:void(0);">...</a></li>
+											<li><a href="javascrip:void(0);">50</a></li>
+											<li class="wt-nextpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-right"></i></a></li>
+										</ul>
+									</nav>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-3 float-left">
+							<div class="wt-dashboardboxcontent wt-offersidebar wt-dashboardbox-margin">
+								<figure><img src="images/save-img-01.jpg" alt="img description"></figure>
+								<div class="wt-offercontent">
+									<h2>Save Big, Do Big</h2>
+									<p>Consectetur adipisicing elitems sed dotem eiusmod tempor incune utnaem labore etdolore maigna aliqua enim.</p>
+									<a href="javascript:void(0);" class="wt-btn">Renew Now</a>
+								</div>
+							</div>
+							<div class="wt-companyad">
+								<figure class="wt-companyadimg"><img src="images/add-img.jpg" alt="img description"></figure>
+								<span>Advertisement  255px X 255px</span>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!--Register Form End-->
+			</main>
