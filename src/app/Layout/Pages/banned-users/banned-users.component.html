@@ -2,16 +2,16 @@
 				<!--Register Form Start-->
 				<section class="wt-haslayout wt-dbsectionspace">
 					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 float-right">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-right">
 							<div class="wt-dashboardbox wt-dashboardinvocies">
 								<div class="wt-dashboardboxtitle wt-titlewithsearch">
-									<h2>Invocies</h2>
+									<h2>Banned Users</h2>
 									<form class="wt-formtheme wt-formsearch">
 										<fieldset>
 											<div class="form-group">
 												<input type="text" name="Search" class="form-control" placeholder="Search Here" (input)="search(searched.value)" #searched>
 												<a class="wt-searchgbtn">
-                          <i class="lnr lnr-magnifier" (click)="search(searched.value)">
+                          <i class="lnr lnr-magnifier">
                           </i>
                         </a>
 											</div>
@@ -23,10 +23,6 @@
 										<thead>
 											<tr>
 												<th>
-													<span class="wt-checkbox">
-														<input id="wt-name" type="checkbox" name="head">
-														<label for="wt-name"></label>
-													</span>
 												</th>
 												<th>Name</th>
 												<th>Ban Date</th>
@@ -36,7 +32,7 @@
 											</tr>
 										</thead>
 										<tbody>
-                      @for (banuser of searchedbans; track $index) {
+                      @for (ban of searchedbans; track $index) {
                         <tr>
                           <td>
                             <span class="wt-checkbox">
@@ -44,14 +40,16 @@
                               <label for="wt-namea"></label>
                             </span>
                           </td>
-                          <td>{{banuser.bannedUserName}}</td>
-                          <td>{{banuser.banDate | date}}</td>
-                          <td>{{banuser.banEndDate| date}}</td>
-                          <td>{{banuser.banEndDate| date}}</td>
+                          <td>{{ban.bannedUserName}}</td>
+                          <td>{{ban.banDate | date}}</td>
+                          <td>{{ban.banEndDate| date}}</td>
+                          <td>{{ban.banEndDate| date}}</td>
                           <td>
                             <div class="wt-actionbtn">
-                              <a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo">view</a>
-                              <a href="javascript:void(0);" class="wt-deleteinfo">Print</a>
+							                <a href="javascript:void(0);" *ngIf="ban.id !== undefined"
+                              (click)="navigatetodetails(ban.id)" class="wt-addinfo wt-skillsaddinfo">view</a>
+                              <a href="javascript:void(0);" *ngIf="ban.id !== undefined"
+                              (click)="Update(ban.id)" class="wt-deleteinfo">Update</a>
                             </div>
                           </td>
                         </tr>
@@ -73,7 +71,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-3 float-left">
+						<!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-3 float-left">
 							<div class="wt-dashboardboxcontent wt-offersidebar wt-dashboardbox-margin">
 								<figure><img src="images/save-img-01.jpg" alt="img description"></figure>
 								<div class="wt-offercontent">
@@ -86,7 +84,7 @@
 								<figure class="wt-companyadimg"><img src="images/add-img.jpg" alt="img description"></figure>
 								<span>Advertisement  255px X 255px</span>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</section>
 				<!--Register Form End-->
