@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Environment } from '../../../base/environment';
 import { AppUsers, ClientsFilter, ClientsView, ClientView, CreateAdminDTO, EditProfileDTO, FilteredClients, FilteredFreelancers, ForgotPasswordDTO, Freelancers, FreelancersFilter, FreelancerView, IdentityVerificationRequest, LoginDTO, RefreshTokenDTO, RegisterDTO, ResetPasswordDTO, SingularFreelancer, Tokens, UserRole, UsersRequestingVerificaiton, VerificationDecision } from '../../Interfaces/Account';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -195,15 +196,18 @@ export class AccountService {
   RefreshToken(dto:RefreshTokenDTO):Observable<Tokens>{
     return this._HttpClient.post<Tokens>(`${this.apiUrl}/Refresh-Token`,dto);
   }
-  ForgotPassword(dto:ForgotPasswordDTO,reseturl:string):Observable<string>
-  {
-    return this._HttpClient.post<string>(`${this.apiUrl}/ForgotPassword?reseturl=${reseturl}`,dto);
+
+  
+  ForgotPassword(dto: ForgotPasswordDTO, reseturl: string): Observable<string> {
+    return this._HttpClient.post<string>(
+      `${this.apiUrl}/ForgotPassword?reseturl=${reseturl}`,
+      dto
+    );
   }
 
-  ResetPassword(dto:ResetPasswordDTO):Observable<string>{
-    return this._HttpClient.post<string>(`${this.apiUrl}/ResetPassword`,dto);
+  ResetPassword(dto: ResetPasswordDTO): Observable<string> {
+    return this._HttpClient.post<string>(`${this.apiUrl}/ResetPassword`, dto);
   }
-
 
 
   ResendEmailConfirmation(email:string):Observable<string>{
@@ -211,19 +215,42 @@ export class AccountService {
       params: new HttpParams().set('emailToBeCONFIRMED', email)
   });
   
- 
 }
-ExternalLogin(provider: string, role: UserRole, returnUrl?: string, errorUrl?: string): void {
-  const params = new HttpParams()
-      .set('provider', provider)
-      .set('role', role)
-      .set('returnUrl', returnUrl || '')
-      .set('errorurl', errorUrl || '');
-      const url = `${this.apiUrl}/External-login?${params.toString()}`;
-      window.location.href = url;
+ExternalLogin(provider: string, role?: UserRole, returnUrl?: string, errorUrl?: string): Observable<any> {
+  let params = new HttpParams()
+    .set('provider', provider)
+    .set('returnUrl', returnUrl || '')
+    .set('errorurl', errorUrl || '');
+
+  if (role) {
+    params = params.set('role', role);
+  }
+
+  const url = `${this.apiUrl}/External-login?${params.toString()}`;
+
+  return new Observable(observer => {
+    window.location.href = url;
+    observer.next(null);
+    observer.complete();
+  });
+}
+
+
+private toastr=inject(ToastrService);
+checkExternalLogin(): void {
+  const url = new URL(window.location.href);
+  const error = url.searchParams.get('error');
+  
+  if (error) {
+    this.toastr.error(error);
+    // Clean the URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
 
 }
-}
+
     // getProfile(): Observable<EditProfileDTO> {
     //   return this.http.get<EditProfileDTO>(`${this.apiUrl}`);
     // }

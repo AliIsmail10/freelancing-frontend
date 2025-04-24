@@ -216,6 +216,7 @@ export interface RefreshTokenDTO {
 export interface ForgotPasswordDTO {
   email: string;
   successurl: string;
+  errorUrl?: string;
 }
 
 export interface ResetPasswordDTO {

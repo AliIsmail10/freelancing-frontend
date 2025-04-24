@@ -10,14 +10,13 @@ import {
   Validators
 } from '@angular/forms';
 import { AccountService } from '../../../Shared/Services/Account/account.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CountriesService } from '../../../Shared/Services/Countries/countries.service';
 import { HomeNavbarComponent } from '../../Additions/home-navbar/home-navbar.component';
 
 @Component({
   selector: 'app-register',
-  standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule,HomeNavbarComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -31,7 +30,8 @@ export class RegisterComponent implements OnInit {
     private _AccountService: AccountService,
     private _Router: Router,
     private _toaste: ToastrService,
-    private _CountriesService: CountriesService
+    private _CountriesService: CountriesService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +70,17 @@ export class RegisterComponent implements OnInit {
     this._CountriesService.getCountries().subscribe(cities => {
       this.cities = cities;
     });
+
+
+    
+  this.route.queryParams.subscribe(params => {
+    if (params['externalLoginFailed'] === 'true') {
+      this._toaste.warning(
+        'Your account was not found. Please register to continue.',
+        'External Login Failed'
+      );
+    }
+  });
   }
 
   passwordMatchValidator(form: AbstractControl) {
