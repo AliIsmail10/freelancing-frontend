@@ -210,12 +210,13 @@ export class AccountService {
   }
 
 
-  ResendEmailConfirmation(email:string):Observable<string>{
-    return this._HttpClient.get<string>(`${this.apiUrl}/ResendEmailConfirmation`,{
+  ResendEmailConfirmation(email: string): Observable<{ message: string }> {
+    return this._HttpClient.get<{ message: string }>(`${this.apiUrl}/ResendEmailConfirmation`, {
       params: new HttpParams().set('emailToBeCONFIRMED', email)
-  });
+    });
+  }
   
-}
+
 ExternalLogin(provider: string, role?: UserRole, returnUrl?: string, errorUrl?: string): Observable<any> {
   let params = new HttpParams()
     .set('provider', provider)

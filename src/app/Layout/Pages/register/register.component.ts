@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CountriesService } from '../../../Shared/Services/Countries/countries.service';
 import { HomeNavbarComponent } from '../../Additions/home-navbar/home-navbar.component';
 
+
 @Component({
   selector: 'app-register',
   imports: [CommonModule, FormsModule, ReactiveFormsModule,HomeNavbarComponent],
@@ -69,6 +70,7 @@ export class RegisterComponent implements OnInit {
     );
     this._CountriesService.getCountries().subscribe(cities => {
       this.cities = cities;
+      console.log(this.cities);
     });
 
 
@@ -143,12 +145,26 @@ export class RegisterComponent implements OnInit {
     if (this.selectedFile) {
       formData.append('ProfilePicture', this.selectedFile);
     }
-
     this._AccountService.Register(formData).subscribe({
       next: (response) => {
         console.log('Registration successful:', response);
-        this._toaste.success('Registration successful!');
-        this._Router.navigate(['/home2/profile']);
+        this._toaste.success('Registration successful! A confirmation email has been sent.');
+    
+        this._AccountService.ResendEmailConfirmation(values.Email).subscribe({
+          next: () => {
+            this._toaste.info('A new email confirmation has been sent to your inbox.');
+            setTimeout(() => {
+              window.close(); 
+            }, 500);
+          },
+          error: (error) => {
+            console.error('Resend failed:', error);
+            this._toaste.warning('Failed to resend confirmation email.');
+          }
+        });
+    
+        // Optionally redirect somewhere like /check-email
+        // this._Router.navigate(['/check-email']);
       },
       error: (error) => {
         console.error('Registration failed:', error);
@@ -164,5 +180,6 @@ export class RegisterComponent implements OnInit {
         }
       }
     });
+    
   }
 }

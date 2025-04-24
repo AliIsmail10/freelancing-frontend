@@ -101,6 +101,12 @@ export class HomeNavbarComponent implements OnInit {
         this._ToastrService.error(this.errorMessage, 'External Login Failed');
       }
     });
+
+    this.route.queryParams.subscribe(params => {
+      if (params['pleaseLogin'] !== undefined) {
+        this.tryClickLoginButton();
+      }
+    });
   }
 
   onSubmit(): void {
@@ -259,10 +265,28 @@ export class HomeNavbarComponent implements OnInit {
     // this.closeLoginDropdown();
   }
 
+ 
   closeLoginDropdown(): void {
     const loginBtn = document.getElementById('wt-loginbtn');
     if (loginBtn) {
       loginBtn.click();
     }
   }
+
+  private tryClickLoginButton(): void {
+    let attempts = 0;
+    const maxAttempts = 10;
+
+    const interval = setInterval(() => {
+      const loginBtn = document.getElementById('wt-loginbtn');
+      if (loginBtn) {
+        loginBtn.click();
+        clearInterval(interval);
+      } else if (++attempts >= maxAttempts) {
+        clearInterval(interval);
+        console.warn('Login button not found after multiple attempts');
+      }
+    }, 100); // Retry every 100ms
+  }
 }
+  

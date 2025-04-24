@@ -3,12 +3,13 @@ import { HomeComponent } from './Layout/Pages/home/home.component';
 import { Home2Component } from './Layout/Pages/home2/home2.component';
 import { BannedUsersComponent } from './Layout/Pages/banned-users/banned-users.component';
 import { BanDetailsComponent } from './Layout/Pages/ban-details/ban-details.component';
+import { AdminDashboardComponent } from './Layout/Pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
-
+    {path: 'test', component:AdminDashboardComponent } ,
     {path:'register', loadComponent: () => import('./Layout/Pages/register/register.component').then(m => m.RegisterComponent)},
     {
         path: 'home',
