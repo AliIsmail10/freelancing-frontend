@@ -42,8 +42,13 @@
                           </td>
                           <td>{{ban.bannedUserName}}</td>
                           <td>{{ban.banDate | date}}</td>
-                          <td>{{ban.banEndDate| date}}</td>
-                          <td>{{ban.banEndDate| date}}</td>
+                          <td>{{ban.banEndDate| date}} </td>
+                          <!-- @if(date < ban.banEndDate){
+                            <td><span class="wt-draft">Active</span></td>
+                          }@else{
+                            <td><span class="wt-pending">Expired</span></td>
+                          } -->
+                            <td></td>
                           <td>
                             <div class="wt-actionbtn">
 							                <a href="javascript:void(0);" *ngIf="ban.id !== undefined"
@@ -52,6 +57,10 @@
                               (click)="Update(ban.id)" class="wt-deleteinfo">Update</a>
                             </div>
                           </td>
+                        </tr>
+                      }@empty{
+                        <tr>
+                          <td colspan="6" class="text-center">No Banned Users Found</td>
                         </tr>
                       }
 										</tbody>
@@ -71,20 +80,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-3 float-left">
-							<div class="wt-dashboardboxcontent wt-offersidebar wt-dashboardbox-margin">
-								<figure><img src="images/save-img-01.jpg" alt="img description"></figure>
-								<div class="wt-offercontent">
-									<h2>Save Big, Do Big</h2>
-									<p>Consectetur adipisicing elitems sed dotem eiusmod tempor incune utnaem labore etdolore maigna aliqua enim.</p>
-									<a href="javascript:void(0);" class="wt-btn">Renew Now</a>
-								</div>
-							</div>
-							<div class="wt-companyad">
-								<figure class="wt-companyadimg"><img src="images/add-img.jpg" alt="img description"></figure>
-								<span>Advertisement  255px X 255px</span>
-							</div>
-						</div> -->
 					</div>
 				</section>
 				<!--Register Form End-->
