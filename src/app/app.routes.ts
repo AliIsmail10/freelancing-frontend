@@ -5,6 +5,7 @@ import { BannedUsersComponent } from './Layout/Pages/banned-users/banned-users.c
 import { BanDetailsComponent } from './Layout/Pages/ban-details/ban-details.component';
 import { UserDashboradComponent } from './Layout/Pages/user-dashborad/user-dashborad.component';
 import { AdminDashboardComponent } from './Layout/Pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
+import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -30,6 +31,7 @@ export const routes: Routes = [
           },
           {path: 'banned',component: BannedUsersComponent},
           {path: 'bandetails/:id',component: BanDetailsComponent},
+          {path: 'updateban/:id',component: UpdateBanComponent},
           {path: 'dashboard', component: UserDashboradComponent},
         ]
       },
