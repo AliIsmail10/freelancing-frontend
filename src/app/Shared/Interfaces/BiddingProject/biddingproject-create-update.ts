@@ -11,3 +11,4 @@ export interface BiddingprojectCreateUpdate {
   projectSkillsIds: number[]
   subcategoryId: number
 }
+

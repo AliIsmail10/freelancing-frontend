@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/environment';
 import { Observable } from 'rxjs';
 import { Skill } from '../../Interfaces/Skill';
+import { UserSkill } from '../../Interfaces/UserSkill';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +34,12 @@ export class SkillService {
   getUserSkills(): Observable<Skill[]> {
     return this._HttpClient.get<Skill[]>(`${this.apiUrl}UserSkill`);
   }  
+
+  
+  getUserSkillsForAdmin(): Observable<UserSkill[]> {
+    return this._HttpClient.get<UserSkill[]>(`${this.apiUrl}UserSkills`);
+  }  
+
 
   createUserSkill(userSkill: Skill): Observable<Skill> {
     return this._HttpClient.post<Skill>(`${this.apiUrl}UserSkill`, userSkill);

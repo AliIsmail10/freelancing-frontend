@@ -42,6 +42,7 @@
                 "node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "node_modules/normalize.css/normalize.css",
                 "src/assets/css/scrollbar.css",
+                "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
                 "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
                 "node_modules/ngx-toastr/toastr.css",
                 "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
@@ -51,11 +52,10 @@
                 "node_modules/chosen-js/chosen.css",
                 "src/assets/css/prettyPhoto.css",
                 "src/assets/css/main.css",
-                "src/assets/css/dashboard.css",
                 "src/assets/css/color.css",
+                "src/assets/css/dashboard.css",
                 "src/assets/css/transitions.css",
                 "src/assets/css/responsive.css",
-                "src/assets/css/dbresponsive.css",
                 "src/styles.css"
               ],
               "scripts": [
@@ -67,6 +67,7 @@
             "node_modules/chosen-js/chosen.jquery.min.js",
             "node_modules/tilt.js/dest/tilt.jquery.min.js",     
             "node_modules/jquery.scrollbar/jquery.scrollbar.min.js",
+              "src/assets/js/scrollbar.min.js",
              "src/assets/js/prettyPhoto.js",
             "node_modules/jquery-ui-dist/jquery-ui.min.js",
             "node_modules/readmore-js/readmore.min.js",

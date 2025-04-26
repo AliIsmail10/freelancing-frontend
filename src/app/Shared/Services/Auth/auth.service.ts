@@ -1,33 +1,32 @@
 import { Injectable, signal } from '@angular/core';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { Environment } from '../../../base/environment';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, map, catchError, throwError, BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = `${Environment.baseUrl}Account/login`;
-  userData: BehaviorSubject<any> = new BehaviorSubject(null);
+  private apiUrl = `${Environment.baseUrl}Account`;
+  userData = new BehaviorSubject<any>(null);
   private _isLoggedIn = signal<boolean>(false);
 
   isLoggedIn = this._isLoggedIn;
-
   isLoggedIn$ = toObservable(this._isLoggedIn);
 
-  constructor(private _HttpClient: HttpClient, private _Router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     this.checkToken();
   }
+
   getTokenFromCookie(): string | null {
     const name = 'user_Token=';
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookieArray = decodedCookie.split(';');
-    
-    for(let i = 0; i < cookieArray.length; i++) {
-      let cookie = cookieArray[i];
+
+    for (let cookie of cookieArray) {
       while (cookie.charAt(0) === ' ') {
         cookie = cookie.substring(1);
       }
@@ -37,12 +36,13 @@ export class AuthService {
     }
     return null;
   }
-  private checkToken() {
-    const token = this.getTokenFromCookie() ;
+
+  private checkToken(): void {
+    const token = this.getTokenFromCookie();
     if (token) {
       try {
-        const decodedUser = jwtDecode(token);
-        this.userData.next(decodedUser);
+        const decoded = jwtDecode(token);
+        this.userData.next(decoded);
         this._isLoggedIn.set(true);
       } catch (error) {
         this.logout();
@@ -50,50 +50,40 @@ export class AuthService {
     }
   }
 
-deleteCookie(name: string) {
-  document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=Lax';
-}
-logout() {
-  this.deleteCookie('user_Token');
-  this.userData.next(null);
-  this._isLoggedIn.set(false);  
-  this._Router.navigate(['/home']);
-}
+  deleteCookie(name: string): void {
+    document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=Lax`;
+  }
+
+  logout(): void {
+    this.deleteCookie('user_Token');
+    this.userData.next(null);
+    this._isLoggedIn.set(false);
+    this.router.navigate(['/home']);
+  }
 
   login(userData: any): Observable<any> {
-    return this._HttpClient.post(
-      `${this.apiUrl}`,
-     userData
-    );
+    return this.httpClient.post(`${this.apiUrl}/login`, userData);
   }
-  
 
-  deCodeUserData(token: string) {
+  deCodeUserData(token: string): void {
     try {
-      const decodedUser = jwtDecode(token);
-      console.log("Decoded User:", decodedUser);
-      this.userData.next(decodedUser);
+      const decoded = jwtDecode(token);
+      this.userData.next(decoded);
       this._isLoggedIn.set(true);
-    } catch (error) {
+    } catch {
       this.logout();
     }
   }
 
- 
-  
   getRole(): string | null {
     const token = this.getTokenFromCookie();
-    const roleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
-  
-    if (token) {
-      try {
-        const decodedUser: any = jwtDecode(token);
-        return decodedUser[roleClaim] || null;
-      } catch (error) {
-        return null;
-      }
+    if (!token) return null;
+
+    try {
+      const decoded: any = jwtDecode(token);
+      return decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || null;
+    } catch {
+      return null;
     }
-    return null;
   }
-  
 }

@@ -7,10 +7,10 @@ import { headerInterceptor } from './Shared/Interceptors/Header/header.intercept
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { errorInterceptor } from './Shared/Interceptors/Error/error.interceptor';
-
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 export const appConfig: ApplicationConfig = {
 
-  providers: [provideHttpClient(withFetch(),withInterceptors([headerInterceptor,errorInterceptor])),provideAnimations(),provideToastr(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [provideCharts(withDefaultRegisterables()),provideHttpClient(withFetch(),withInterceptors([headerInterceptor,errorInterceptor])),provideAnimations(),provideToastr(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
 
 };
 
