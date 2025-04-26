@@ -3,8 +3,7 @@ import { Ban } from '../../../Shared/Interfaces/Bans';
 import { BansService } from '../../../Shared/Services/Bans/bans.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Route, Router, RouterLink } from '@angular/router';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-banned-users',
   imports: [CommonModule, FormsModule],
@@ -13,9 +12,10 @@ import { Route, Router, RouterLink } from '@angular/router';
 })
 export class BannedUsersComponent implements OnInit{
   bannedUsers: Ban[] = [];
-  searchedbans: Ban[]=[]
+  searchedbans: Ban[]=[];
+  date: Date = new Date();
   constructor(private banned: BansService,
-     private router:Router
+    private router:Router
     ) {}
 
   ngOnInit() {
@@ -24,6 +24,7 @@ export class BannedUsersComponent implements OnInit{
         next:(value)=>{
           this.bannedUsers = value
           this.searchedbans = value
+          ;
         }
       }
     )
@@ -38,13 +39,7 @@ navigatetodetails(id:number) {
 }
 
 Update(id:number){
-  // this.banned.updateBan(id).subscribe(
-  //   {
-  //     next:()=>{
-
-  //     }
-  //   }
-  // );
+  this.router.navigateByUrl(`/home2/updateban/${id}`)
 }
 
 
