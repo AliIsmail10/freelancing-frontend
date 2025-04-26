@@ -15,6 +15,7 @@ export interface FreelancerView {
     isVerified: boolean
     isAvailable: boolean
     userSkills: string[]
+    role: string
   }
   
   export interface SingularFreelancer extends FreelancerView {

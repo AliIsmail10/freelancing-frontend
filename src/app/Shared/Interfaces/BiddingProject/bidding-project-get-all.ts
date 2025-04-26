@@ -12,4 +12,12 @@ export interface BiddingProjectGetAll {
   postedFrom: number
   clientTotalNumberOfReviews: number
   clientRating: number
+  status?: string; 
+}
+
+export interface BiddingProjectsResponse {
+  totalCount: number;
+  pageNumber: number;
+  pageSize: number;
+  projects: BiddingProjectGetAll[];
 }
