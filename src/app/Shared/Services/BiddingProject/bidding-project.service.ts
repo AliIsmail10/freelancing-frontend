@@ -62,4 +62,10 @@ export class BiddingProjectService {
     return this.httpClinet.delete<boolean>(`${this.Url}/${id}`)
    }
 
+   //------------------------------------------------------------------------------------
+   
+   GetmyBiddingprojects(): Observable<BiddingProjectGetAll[]>{
+    return this.httpClinet.get<BiddingProjectGetAll[]>(`${this.Url}/GetMyBiddingProjects`);
+   }
+
 }

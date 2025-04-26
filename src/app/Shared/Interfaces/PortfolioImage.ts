@@ -3,3 +3,7 @@ export interface PortfolioImage{
     imageUrl: string;
    
 }
+export interface UploadImageRequest{
+    imageFile:File
+    projectId:number
+}

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/environment';
-import { AppUsers, ClientsFilter, ClientsView, ClientView, CreateAdminDTO, EditProfileDTO, FilteredClients, FilteredFreelancers, ForgotPasswordDTO, Freelancers, FreelancersFilter, FreelancerView, IdentityVerificationRequest, LoginDTO, RefreshTokenDTO, RegisterDTO, ResetPasswordDTO, SingularFreelancer, Tokens, UserRole, UsersRequestingVerificaiton, VerificationDecision } from '../../Interfaces/Account';
+import { AppUser, AppUsers, ClientsFilter, ClientsView, ClientView, CreateAdminDTO, EditProfileDTO, FilteredClients, FilteredFreelancers, ForgotPasswordDTO, Freelancers, FreelancersFilter, FreelancerView, IdentityVerificationRequest, LoginDTO, RefreshTokenDTO, RegisterDTO, ResetPasswordDTO, SingularFreelancer, Tokens, UserRole, UsersRequestingVerificaiton, VerificationDecision } from '../../Interfaces/Account';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -84,6 +84,9 @@ export class AccountService {
     getUsers():Observable<AppUsers> {
       return this._HttpClient.get<AppUsers>(`${this.apiUrl}/GetAllUsers`);
     }
+    myPorfile():Observable<AppUser> {
+      return this._HttpClient.get<AppUser>(`${this.apiUrl}/MyProfile`);
+    }
 
     getUserIdentityPicture(userid:string):Observable<string> {
       return this._HttpClient.get<string>(`${this.apiUrl}/getUserIdentityPicture?userid=${userid}`);
@@ -92,12 +95,17 @@ export class AccountService {
     getUsersRequestingVerifications():Observable<UsersRequestingVerificaiton>{
       return this._HttpClient.get<UsersRequestingVerificaiton>(`${this.apiUrl}/getUsersRequestingVerifications`);
     }
-
-    RequestIdentityVerification(req:FormData):Observable<string>
-    {
-
-      return this._HttpClient.post<string>(`${this.apiUrl}/RequestIdentityVerification`,req);
+    ToggleAvailability():Observable<string>{
+      return this._HttpClient.get<string>(`${this.apiUrl}/ToggleAvailability`);
     }
+    RequestIdentityVerification(request: IdentityVerificationRequest): Observable<string> {
+      const formData = new FormData();
+      formData.append('fullName', request.fullName);
+      formData.append('nationalId', request.nationalId);
+      formData.append('idPicture', request.idPicture);
+      
+      return this._HttpClient.post<string>(`${this.apiUrl}/RequestIdentityVerification`, formData);
+  }
     VerifyIdentity(decision:VerificationDecision):Observable<string>{
       return this._HttpClient.post<string>(`${this.apiUrl}/ManageVerificationRequest`,decision);
 
@@ -106,33 +114,48 @@ export class AccountService {
 
     EditProfile(profileData:EditProfileDTO):Observable<string>{
       const formData = new FormData();
-    
-      // Append all text fields
-      formData.append('firstname', profileData.firstname);
-      formData.append('lastname', profileData.lastname);
-      formData.append('city', profileData.city);
-      formData.append('userName', profileData.userName);
-      formData.append('description', profileData.description || '');
-      if (profileData.dateOfBirth instanceof Date) {
-        const year = profileData.dateOfBirth.getFullYear();
-        const month = String(profileData.dateOfBirth.getMonth() + 1).padStart(2, '0');
-        const day = String(profileData.dateOfBirth.getDate()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`;
-        formData.append('dateOfBirth', formattedDate);
-    }
 
-      formData.append('phoneNumber', profileData.phoneNumber);
-      formData.append('password', profileData.password);
-      if (profileData.confirmPassword) {
-        formData.append('confirmPassword', profileData.confirmPassword);
-      }
-      
-      // Append file if exists
-      if (profileData.profilePicture) {
-        formData.append('profilePicture', profileData.profilePicture);
-      }
-  
-      return this._HttpClient.put<string>(`${this.apiUrl}/EditProfile`, formData);
+  // Append required fields
+  formData.append('firstname', profileData.firstname?.trim() || '');
+  formData.append('lastname', profileData.lastname?.trim() || '');
+  formData.append('userName', profileData.UserName?.trim() || '');
+  formData.append('title', profileData.title?.trim() || '');
+  formData.append('phoneNumber', profileData.PhoneNumber?.trim() || '');
+  formData.append('Password', profileData.Password?.trim() || '');
+  formData.append('ConfirmPassword', profileData.ConfirmPassword?.trim() || profileData.Password?.trim() || '');
+
+  // Append CityId
+  formData.append('CityId', profileData.CityId?.toString() || '0');
+
+  // Append optional Description
+  formData.append('Description', profileData.Description?.trim() || '');
+
+  // Append DateOfBirth
+  if (profileData.DateOfBirth instanceof Date && !isNaN(profileData.DateOfBirth.getTime())) {
+    const year = profileData.DateOfBirth.getFullYear();
+    const month = String(profileData.DateOfBirth.getMonth() + 1).padStart(2, '0');
+    const day = String(profileData.DateOfBirth.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    formData.append('DateOfBirth', formattedDate);
+  } else {
+    formData.append('DateOfBirth', '');
+  }
+
+  // Append ProfilePicture
+  if (profileData.ProfilePicture instanceof File) {
+    formData.append('ProfilePicture', profileData.ProfilePicture, profileData.ProfilePicture.name);
+  }
+
+  // Log FormData for debugging
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+  }
+      // const dto=formData;
+
+      const formData2 = new FormData();
+formData2.append('Test', 'hello');
+return this._HttpClient.put<string>(`${this.apiUrl}/EditProfile`, formData);
+return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2);
     }
   
 

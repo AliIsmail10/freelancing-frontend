@@ -16,7 +16,7 @@ export class CertificateService {
     return this._HttpClient.get<Certificate>(`${this.apiUrl}Certificates/${id}`);
   }
 
-  updateCertificate(id: number, certificate: Certificate): Observable<Certificate> {
+  updateCertificate(id: number, certificate: any): Observable<Certificate> {
     return this._HttpClient.put<Certificate>(`${this.apiUrl}Certificates/${id}`, certificate);
   }
 
@@ -24,7 +24,7 @@ export class CertificateService {
     return this._HttpClient.delete<void>(`${this.apiUrl}Certificates/${id}`);
   }
 
-  addCertificate(certificate: Certificate): Observable<Certificate> {
+  addCertificate(certificate: any): Observable<Certificate> {
     return this._HttpClient.post<Certificate>(`${this.apiUrl}Certificates`, certificate);
   }
 

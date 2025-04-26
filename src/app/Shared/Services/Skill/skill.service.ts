@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/environment';
 import { Observable } from 'rxjs';
-import { Skill } from '../../Interfaces/Skill';
+import { FreelancerSkill, nonrecommendedSkill, Skill } from '../../Interfaces/Skill';
+import { UserSkill } from '../../Interfaces/UserSkill';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,12 +31,12 @@ export class SkillService {
   }
  
 
-  getUserSkills(): Observable<Skill[]> {
-    return this._HttpClient.get<Skill[]>(`${this.apiUrl}UserSkill`);
+  getUserSkills(): Observable<FreelancerSkill[]> {
+    return this._HttpClient.get<FreelancerSkill[]>(`${this.apiUrl}UserSkill`);
   }  
 
-  createUserSkill(userSkill: Skill): Observable<Skill> {
-    return this._HttpClient.post<Skill>(`${this.apiUrl}UserSkill`, userSkill);
+  createUserSkill(userSkill: UserSkill): Observable<UserSkill> {
+    return this._HttpClient.post<UserSkill>(`${this.apiUrl}UserSkill`, userSkill);
   }
 
   getUserSkillById(id: number): Observable<Skill> {
@@ -47,6 +48,23 @@ export class SkillService {
   }
   deleteUserSkill(id: number): Observable<void> {
     return this._HttpClient.delete<void>(`${this.apiUrl}UserSkill/${id}`);
+  }
+
+  getnonRecommendedUserSkills(): Observable<nonrecommendedSkill[]> {
+    return this._HttpClient.get<nonrecommendedSkill[]>(`${this.apiUrl}NonRecommendedUserSkill/byuser`);
+  }  
+  CreatenonRecommendedUserSkills(SkillName:string): Observable<nonrecommendedSkill> {
+    console.log(SkillName);
+    return this._HttpClient.post<nonrecommendedSkill>(`${this.apiUrl}NonRecommendedUserSkill`,JSON.stringify(SkillName), 
+          {
+              headers: new HttpHeaders({
+                  'Content-Type': 'application/json'
+              })
+          });
+  }  
+  DeletenonRecommendedUserSkills(id:number): Observable<string> 
+  {
+    return this._HttpClient.delete<string>(`${this.apiUrl}NonRecommendedUserSkill/${id}`);
   }
 
 }

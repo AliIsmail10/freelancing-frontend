@@ -13,7 +13,10 @@ export class FixedPriceProjectService {
   private apiUrl = `${Environment.baseUrl}FixedPriceProject`;
 
   constructor(private http: HttpClient) {}
-
+  getmyprojects():Observable<FixedPriceProject[]>
+  {
+    return this.http.get<FixedPriceProject[]>(this.apiUrl+"/myfixedpriceprojects");
+  }
   getProjects(filters: FixedProjectFilters = {}): Observable<FixedPriceProject[]> {
     // const baseUrl = 'https://localhost:7093/api/FixedPriceProject';
     // const searchParams = new URLSearchParams();
