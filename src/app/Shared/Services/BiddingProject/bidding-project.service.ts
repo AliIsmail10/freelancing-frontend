@@ -4,7 +4,7 @@ import { Environment } from '../../../base/environment';
 //import { BiddingProject } from '../../Interfaces/bidding-project';
 import { Observable } from 'rxjs';
 import { BiddingProjectFilter } from '../../Interfaces/BiddingProject/bidding-project-filter';
-import { BiddingProjectGetAll } from '../../Interfaces/BiddingProject/bidding-project-get-all';
+import { BiddingProjectGetAll, BiddingProjectsResponse } from '../../Interfaces/BiddingProject/bidding-project-get-all';
 import { BiddingProjectGetById } from '../../Interfaces/BiddingProject/bidding-project-get-by-id';
 import { BiddingprojectCreateUpdate } from '../../Interfaces/BiddingProject/biddingproject-create-update';
 import { CreateUpdateReturn } from '../../Interfaces/BiddingProject/create-update-return';
@@ -68,4 +68,18 @@ export class BiddingProjectService {
     return this.httpClinet.get<BiddingProjectGetAll[]>(`${this.Url}/GetMyBiddingProjects`);
    }
 
+   GetAllBiddingProjectsDashBoard(filter: BiddingProjectFilter, PageNumber: number, PageSize: number): Observable<BiddingProjectsResponse> {
+    let params = new HttpParams()
+      .set('PageNumber', PageNumber.toString())
+      .set('PageSize', PageSize.toString());
+
+    for (const key in filter) {
+      const value = filter[key as keyof BiddingProjectFilter];
+      if (value !== null && value !== undefined) {
+        params = params.set(key, value.toString());
+      }
+    }
+
+    return this.httpClinet.get<BiddingProjectsResponse>(this.Url, { params });
+  }
 }

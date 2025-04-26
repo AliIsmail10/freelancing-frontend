@@ -10,14 +10,14 @@ import {
   Validators
 } from '@angular/forms';
 import { AccountService } from '../../../Shared/Services/Account/account.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CountriesService } from '../../../Shared/Services/Countries/countries.service';
 import { HomeNavbarComponent } from '../../Additions/home-navbar/home-navbar.component';
 
+
 @Component({
   selector: 'app-register',
-  standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule,HomeNavbarComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -31,7 +31,8 @@ export class RegisterComponent implements OnInit {
     private _AccountService: AccountService,
     private _Router: Router,
     private _toaste: ToastrService,
-    private _CountriesService: CountriesService
+    private _CountriesService: CountriesService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +70,19 @@ export class RegisterComponent implements OnInit {
     );
     this._CountriesService.getCountries().subscribe(cities => {
       this.cities = cities;
+      console.log(this.cities);
     });
+
+
+    
+  this.route.queryParams.subscribe(params => {
+    if (params['externalLoginFailed'] === 'true') {
+      this._toaste.warning(
+        'Your account was not found. Please register to continue.',
+        'External Login Failed'
+      );
+    }
+  });
   }
 
   passwordMatchValidator(form: AbstractControl) {
@@ -132,12 +145,26 @@ export class RegisterComponent implements OnInit {
     if (this.selectedFile) {
       formData.append('ProfilePicture', this.selectedFile);
     }
-
     this._AccountService.Register(formData).subscribe({
       next: (response) => {
         console.log('Registration successful:', response);
-        this._toaste.success('Registration successful!');
-        this._Router.navigate(['/home2/profile']);
+        this._toaste.success('Registration successful! A confirmation email has been sent.');
+    
+        this._AccountService.ResendEmailConfirmation(values.Email).subscribe({
+          next: () => {
+            this._toaste.info('A new email confirmation has been sent to your inbox.');
+            setTimeout(() => {
+              window.close(); 
+            }, 500);
+          },
+          error: (error) => {
+            console.error('Resend failed:', error);
+            this._toaste.warning('Failed to resend confirmation email.');
+          }
+        });
+    
+        // Optionally redirect somewhere like /check-email
+        // this._Router.navigate(['/check-email']);
       },
       error: (error) => {
         console.error('Registration failed:', error);
@@ -153,5 +180,6 @@ export class RegisterComponent implements OnInit {
         }
       }
     });
+    
   }
 }

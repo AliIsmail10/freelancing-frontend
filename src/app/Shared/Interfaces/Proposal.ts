@@ -18,6 +18,7 @@ export interface ProposalView {
 
 export interface SuggestedMilestone {
   id: number
+  title:string
   description: string
   amount: number
   duration: number

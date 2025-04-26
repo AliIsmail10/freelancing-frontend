@@ -29,7 +29,7 @@ export class BansService {
   }
 
   getAllBans(): Observable<Ban[]> {
-    return this._HttpClient.get<Ban[]>(`${this.apiUrl}banned-users`);
+    return this._HttpClient.get<Ban[]>(`${this.apiUrl}Bans/banned-users`);
   }
   getActiveBansByUserId(userId: string): Observable<Ban[]> {
     return this._HttpClient.get<Ban[]>(`${this.apiUrl}Bans/active/${userId}`);

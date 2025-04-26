@@ -38,6 +38,14 @@ export class SkillService {
   createUserSkill(userSkill: UserSkill): Observable<UserSkill> {
     return this._HttpClient.post<UserSkill>(`${this.apiUrl}UserSkill`, userSkill);
   }
+  getUserSkillsForAdmin(): Observable<UserSkill[]> {
+    return this._HttpClient.get<UserSkill[]>(`${this.apiUrl}UserSkills`);
+  }  
+
+
+  // createUserSkill(userSkill: Skill): Observable<Skill> {
+  //   return this._HttpClient.post<Skill>(`${this.apiUrl}UserSkill`, userSkill);
+  // }
 
   getUserSkillById(id: number): Observable<Skill> {
     return this._HttpClient.get<Skill>(`${this.apiUrl}UserSkill/${id}`);
