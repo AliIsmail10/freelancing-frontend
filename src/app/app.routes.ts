@@ -80,6 +80,7 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
+import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
 
 
 
@@ -120,8 +121,8 @@ export const routes: Routes = [
           {path: 'dashboard', component: UserDashboradComponent},
           {path: 'test',component: TestComponent},
           {path: 'new',component: BiddingProjectNewComponent},
-          {path: 'details/:id',component: BiddingProjectDetailsComponent}
-
+          {path: 'details/:id',component: BiddingProjectDetailsComponent},
+          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent}
         ]
       },
    

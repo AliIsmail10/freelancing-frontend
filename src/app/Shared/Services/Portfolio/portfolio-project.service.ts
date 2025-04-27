@@ -20,6 +20,10 @@ export class PortfolioProjectService {
     console.log("asdiouahsdio");
     return this.myClient.get<freelancerportofolioprojects>(this.apiURL + '/MyPortofolioProjects');
   }
+  getUserPortfolioProjects(userId:string):Observable<freelancerportofolioprojects> {
+    console.log("asdiouahsdio");
+    return this.myClient.get<freelancerportofolioprojects>(this.apiURL + `/UserPortofolioProjects/${userId}`);
+  }
   getPortfolioProjectById(id: number):Observable<any> {
     return this.myClient.get(this.apiURL  + id);
   }

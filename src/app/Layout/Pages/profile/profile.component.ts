@@ -5,7 +5,7 @@ import { AuthService } from '../../../Shared/Services/Auth/auth.service';
 import { AppUser, EditProfileDTO, IdentityVerificationRequest } from '../../../Shared/Interfaces/Account';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Country } from '../../../Shared/Interfaces/Country';
+// import { Country } from '../../../Shared/Interfaces/Country';
 import { City } from '../../../Shared/Interfaces/City';
 import { CountriesService } from '../../../Shared/Services/Countries/countries.service';
 import { CitiesService } from '../../../Shared/Services/Cities/cities.service';
@@ -30,6 +30,7 @@ import { BiddingProjectGetAll } from '../../../Shared/Interfaces/BiddingProject/
 import { TimeAgoPipe } from '../../../Pipes/time-ago.pipe';
 import { FixedPriceProjectService } from '../../../Shared/Services/FixedPriceProject/fixed-price-project.service';
 import { FixedPriceProject } from '../../../Shared/Interfaces/FixedPriceProject';
+import { Country } from '../../../Shared/Interfaces/Country';
 
 
 @Component({
@@ -293,13 +294,13 @@ private loadCertificates() {
 
 //#region portofolio project
 
+projectForm!: FormGroup;
   isProjectModalOpen: boolean = false;
-  projectForm!: FormGroup;
-  selectedProjectImages: File[] = [];
-  imagePreviewUrls: string[] = [];
   userPortfolioproject:freelancerportofolioprojects=[]
   editingProject: freelancerportofolioproject | null = null;
+  imagePreviewUrls: string[] = [];
   projectimagesurl:string=projectImages.filesUrl;
+  selectedProjectImages: File[] = [];
   loadPortofolioProjects(){
 
   this.portfolioprojectservice.getMyPortfolioProjects().subscribe(
@@ -555,12 +556,12 @@ submitProject() {
 //#endregion
 
   //#region 
-userExperiences:Experience[]=[]
-isExperienceModalOpen: boolean = false;
-experienceForm!: FormGroup;
-isLoadingExperience: boolean = false;
-editingExperienceId: number | null = null;
-isSubmitting: boolean = false;
+  isExperienceModalOpen: boolean = false;
+  experienceForm!: FormGroup;
+  isLoadingExperience: boolean = false;
+  editingExperienceId: number | null = null;
+  isSubmitting: boolean = false;
+  userExperiences:Experience[]=[]
   loadExperience(){
     if (!this.profile?.userName) {
       this.toastr.error('Unable to load experience: User profile not available');

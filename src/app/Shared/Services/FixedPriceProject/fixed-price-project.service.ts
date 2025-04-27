@@ -17,6 +17,10 @@ export class FixedPriceProjectService {
   {
     return this.http.get<FixedPriceProject[]>(this.apiUrl+"/myfixedpriceprojects");
   }
+  getuserprojects(username:string):Observable<FixedPriceProject[]>
+  {
+    return this.http.get<FixedPriceProject[]>(this.apiUrl+`/userfixedpriceprojects/${username}`);
+  }
   getProjects(filters: FixedProjectFilters = {}): Observable<FixedPriceProject[]> {
     // const baseUrl = 'https://localhost:7093/api/FixedPriceProject';
     // const searchParams = new URLSearchParams();
