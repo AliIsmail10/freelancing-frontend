@@ -42,6 +42,7 @@
                 "node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "node_modules/normalize.css/normalize.css",
                 "src/assets/css/scrollbar.css",
+                "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
                 "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
                 "src/assets/css/font-awesome.min.css",
                 "node_modules/ngx-toastr/toastr.css",
@@ -53,14 +54,11 @@
                 "node_modules/chosen-js/chosen.css",
                 "src/assets/css/prettyPhoto.css",
                 "src/assets/css/main.css",
-                "src/assets/css/dashboard.css",
                 "src/assets/css/color.css",
+                "src/assets/css/dashboard.css",
                 "src/assets/css/transitions.css",
                 "src/assets/css/responsive.css",
-                "src/assets/css/dbresponsive.css",
-                "src/styles.css"        
-
-
+                "src/styles.css"
               ],
               "scripts": [
             "node_modules/jquery/dist/jquery.min.js", 
@@ -72,6 +70,7 @@
             "node_modules/chosen-js/chosen.jquery.min.js",
             "node_modules/tilt.js/dest/tilt.jquery.min.js",     
             "node_modules/jquery.scrollbar/jquery.scrollbar.min.js",
+              "src/assets/js/scrollbar.min.js",
              "src/assets/js/prettyPhoto.js",
             "node_modules/jquery-ui-dist/jquery-ui.min.js",
             "node_modules/readmore-js/readmore.min.js",
@@ -81,19 +80,7 @@
             "node_modules/jquery-countto/jquery.countTo.js",
             "node_modules/jquery-appear-original/index.js",
             "node_modules/tipso/src/tipso.min.js",
-            "src/assets/js/main.js",
-            "src/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js",
-
-
-
-            "src/assets/js/vendor/jquery-3.3.1.js",
-
-  
-            "src/assets/js/appear.js",
-    
-            "src/assets/js/jRate.js",
-          
-            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            "src/assets/js/main.js"
 
               ]
             },
@@ -107,8 +94,8 @@
                   },
                   {
                     "type": "anyComponentStyle",
-                    "maximumWarning": "4kB",
-                    "maximumError": "8kB"
+                    "maximumWarning": "20kB",
+                    "maximumError": "30kB"
                   }
                 ],
                 "outputHashing": "all"

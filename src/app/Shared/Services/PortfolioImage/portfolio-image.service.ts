@@ -17,9 +17,13 @@ export class PortfolioImageService {
     return this.myClient.get<PortfolioImage[]>(`${this.apiURL}`);
   }
   
-  UploadImage(file: File):Observable<PortfolioImageService> {
+  UploadImage(projectid:number,file: File):Observable<PortfolioImageService> {
     const formData = new FormData();
-    formData.append('ImageFile', file, file.name);
+    formData.append('imageFile', file, file.name);
+    formData.append('projectId', projectid.toString());
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+  });
     return this.myClient.post<PortfolioImageService>(`${this.apiURL}/upload` , formData);
   }
  

@@ -4,10 +4,9 @@ import { inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 export const headerInterceptor: HttpInterceptorFn = (req, next) => {
-    const toastr= inject(ToastrService);
+  const toastr = inject(ToastrService);
 
   try {
-    // Skip for non-API requests or specific endpoints
     if (!req.url.includes('/api/') || req.url.includes('/Account/login')) {
       return next(req);
     }
@@ -15,23 +14,25 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
     const authService = inject(AuthService);
     const token = authService.getTokenFromCookie();
 
-    // Validate token exists and looks reasonable
-    if (token && typeof token === 'string' && token.length > 10) {
-      const cloned = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest' // Optional security header
-        }
-      });
-      return next(cloned);
+    let headers: Record<string, string> = {
+      Authorization: `Bearer ${token}`,
+      'X-Requested-With': 'XMLHttpRequest'
+    };
+
+    // Only set Content-Type to application/json if body is not FormData
+    const isFormData = req.body instanceof FormData;
+    if (!isFormData) {
+      headers['Content-Type'] = 'application/json';
     }
 
-    return next(req);
-  }
-   catch (error) {
+    const cloned = req.clone({
+      setHeaders: headers
+    });
+
+    return next(cloned);
+  } catch (error) {
     console.error('Interceptor error:', error);
-     toastr.error('An error occurred while processing the request.', 'Error', )
+    toastr.error('An error occurred while processing the request.', 'Error');
     return next(req);
   }
 };

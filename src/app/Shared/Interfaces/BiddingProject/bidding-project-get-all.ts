@@ -17,3 +17,10 @@ export interface BiddingProjectGetAll {
   clientIsVerified:boolean
   expectedDuration:number
 }
+
+export interface BiddingProjectsResponse {
+  totalCount: number;
+  pageNumber: number;
+  pageSize: number;
+  projects: BiddingProjectGetAll[];
+}

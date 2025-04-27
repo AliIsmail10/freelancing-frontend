@@ -11,3 +11,27 @@ export interface portfolioProject
  }
 
  
+
+ export type freelancerportofolioprojects = freelancerportofolioproject[]
+
+ export interface freelancerportofolioproject {
+   id: number
+   description: string
+   freelancerId: string
+   title: string
+   createdAt: string
+   images: Image[]
+ }
+ 
+ export interface Image {
+   image: string
+   id: number
+   previousProjectId: number
+ }
+ 
+
+ export interface CreatePortfolioProjectDTO {
+  title: string;
+  description: string;
+  images: File[];
+}

@@ -7,34 +7,10 @@ import { headerInterceptor } from './Shared/Interceptors/Header/header.intercept
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { errorInterceptor } from './Shared/Interceptors/Error/error.interceptor';
-
-
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { BsDropdownModule } from 'ng-bootstrap/dropdown'
-// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
-// @NgModule({
-//   imports: [
-//     NgbModule
-//   ],
-// })
-
-
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 export const appConfig: ApplicationConfig = {
 
-
- 
-  providers: [provideHttpClient(withFetch(),withInterceptors([headerInterceptor,errorInterceptor])),
-  provideAnimations(),
-  provideToastr(),
-  provideZoneChangeDetection({ eventCoalescing: true }), 
-  provideRouter(routes),
-  // importProvidersFrom(BsDropdownModule)
-  
-]
+  providers: [provideCharts(withDefaultRegisterables()),provideHttpClient(withFetch(),withInterceptors([headerInterceptor,errorInterceptor])),provideAnimations(),provideToastr(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
 
 };
 

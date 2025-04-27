@@ -2,10 +2,11 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from "./Layout/Additions/footer/footer.component";
-import { BiddingProjectComponent } from './Components/bidding-project/bidding-project.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, BiddingProjectComponent],
+  standalone: true,
+  imports: [RouterOutlet, FooterComponent,NgbModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'] 
 })
