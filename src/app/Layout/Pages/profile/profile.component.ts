@@ -20,7 +20,7 @@ import { ExperienceService } from '../../../Shared/Services/Experiences/experien
 import { Experience } from '../../../Shared/Interfaces/experience';
 import { freelancerportofolioproject, freelancerportofolioprojects, portfolioProject } from '../../../Shared/Interfaces/PortfolioProject';
 import { PortfolioProjectService } from '../../../Shared/Services/Portfolio/portfolio-project.service';
-import { NgbCarouselModule, NgbModule,NgbSlide } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbCarouselModule, NgbModule,NgbSlide } from '@ng-bootstrap/ng-bootstrap';
 import { PortfolioImageService } from '../../../Shared/Services/PortfolioImage/portfolio-image.service';
 import { forkJoin } from 'rxjs';
 import { CertificateService } from '../../../Shared/Services/Certificates/certificate.service';
@@ -31,10 +31,12 @@ import { TimeAgoPipe } from '../../../Pipes/time-ago.pipe';
 import { FixedPriceProjectService } from '../../../Shared/Services/FixedPriceProject/fixed-price-project.service';
 import { FixedPriceProject } from '../../../Shared/Interfaces/FixedPriceProject';
 
+
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,NgbCarouselModule,TimeAgoPipe],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,TimeAgoPipe],
+  providers:[FormBuilder],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
