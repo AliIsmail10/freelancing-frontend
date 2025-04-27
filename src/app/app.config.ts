@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection,importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,7 +10,13 @@ import { errorInterceptor } from './Shared/Interceptors/Error/error.interceptor'
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 export const appConfig: ApplicationConfig = {
 
-  providers: [provideCharts(withDefaultRegisterables()),provideHttpClient(withFetch(),withInterceptors([headerInterceptor,errorInterceptor])),provideAnimations(),provideToastr(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [provideCharts(withDefaultRegisterables()),
+    provideHttpClient(withFetch(),
+    withInterceptors([headerInterceptor,errorInterceptor])),
+    provideAnimations(),
+    provideToastr(),
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideRouter(routes)]
 
 };
 

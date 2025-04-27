@@ -1,0 +1,578 @@
+
+	<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- Preloader Start -->
+	<!-- <div class="preloader-outer">
+		<div class="loader"></div>
+	</div> -->
+	<!-- Preloader End -->
+	<!-- Wrapper Start -->
+	<div id="wt-wrapper" class="wt-wrapper wt-haslayout">
+		<!-- Content Wrapper Start -->
+		<div class="wt-contentwrapper">
+	
+			<!--Inner Home Banner Start-->
+			<div class="wt-haslayout wt-innerbannerholder">
+				<div class="container">
+					<div class="row justify-content-md-center">
+						<div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+							<div class="wt-innerbannercontent">
+							<div class="wt-title"><h2>Search Result</h2></div>
+							<ol class="wt-breadcrumb">
+								<li><a href="index-2.html">Home</a></li>
+								<li class="wt-active">Job</li>
+							</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Inner Home End-->
+			<!--Main Start-->
+
+
+			
+			<main id="wt-main" class="wt-main wt-haslayout wt-innerbgcolor">
+				<div class="wt-haslayout wt-main-section ">
+					<!-- User Listing Start-->
+					<div class="wt-haslayout">
+						<div class="container">
+							<div class="row">
+								<div id="wt-twocolumns" class="wt-twocolumns wt-haslayout">
+									<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 float-left">
+										<aside id="wt-sidebar" class="wt-sidebar">
+
+
+
+											
+
+
+											<div class="wt-widget wt-effectiveholder rounded-3">
+												<div class="wt-widgettitle">
+													<h2>Categories</h2>
+												</div>
+												<div class="wt-widgetcontent">
+													<form class="wt-formtheme wt-formsearch">
+														<fieldset>
+															<div class="form-group">
+																<input type="text" name="Search" class="form-control" placeholder="Search Category">
+																<a href="javascrip:void(0);" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></a>
+															</div>
+														</fieldset>
+														<fieldset>
+															<div class="wt-checkboxholder wt-verticalscrollbar">
+
+																@for(category of Categories; track category.id){
+																	<span class="wt-checkbox">
+																		<p>{{category.name}}</p>
+																		
+																		@for(subcategory of getSubcategoriesOfCategory(category.id); track subcategory.id){
+																			<input id="subcategory-{{subcategory.id}}"
+																			type="checkbox"
+																			name={{subcategory.name}}
+																			value={{subcategory.id}} 
+																			(change)="selectSubCategory(subcategory.id)"
+																			>
+
+																			<label class="mb-2" for="subcategory-{{subcategory.id}}"> {{subcategory.name}}</label>
+																			
+																		}
+																		
+																	</span>
+																}
+																
+															</div>
+															
+														</fieldset>
+													</form>
+													
+
+													
+													<!-- <div class="filter-header" (click)="toggleSection('category')">
+														<span>Category</span>
+														<span class="toggle-icon" [class.expanded]="expandedSections.category">
+															<i class="fas fa-chevron-down"></i>
+														</span>
+													</div>
+													<div class="filter-content" [class.collapsed]="!expandedSections.category">
+														<div class="checkbox-list">
+															@for(category of Categories; track category.id) {
+																<label class="checkbox-item">
+																	<input type="checkbox">
+																	{{ category.name }}
+																</label>
+															}
+														</div>
+													</div> -->
+												
+
+
+
+												
+												</div>
+											</div>
+
+											<!-- -------------------------------------------------------------------------------------------------- -->
+
+											<div class="wt-widget wt-effectiveholder rounded-3">
+												<div class="wt-widgettitle">
+													<h2>Project Type</h2>
+												</div>
+												<div class="wt-widgetcontent">
+													<form class="wt-formtheme wt-formsearch">
+														<fieldset>
+															<div class="wt-checkboxholder">
+																<span class="wt-radio">
+																	<input id="project" type="radio" name="description" value="company" checked>
+																	<label for="project"> Any Project Type</label>
+																</span>
+																<span class="wt-radio">
+																	<input id="hourly" type="radio" name="description" value="company">
+																	<label for="hourly"> Hourly Based Project</label>
+																</span>
+																<div id="wt-productrangeslider" class="wt-productrangeslider wt-themerangeslider"></div>
+																<div class="wt-amountbox">
+																	<input type="text" id="wt-consultationfeeamount" readonly>
+																</div>
+																<span class="wt-radio">
+																	<input id="fixed" type="radio" name="description" value="company">
+																	<label for="fixed"> Fixed Price Project</label>
+																</span>
+															</div>
+														</fieldset>
+													</form>
+												</div>
+											</div>
+
+											<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+											<div class="wt-widget wt-effectiveholder rounded-3">
+												<div class="wt-widgettitle">
+													<h2>Location</h2>
+												</div>
+												<div class="wt-widgetcontent">
+													<form class="wt-formtheme wt-formsearch">
+														<fieldset>
+															<div class="form-group">
+																<input type="text" name="fullname" class="form-control" placeholder="Search Location">
+																<a href="javascrip:void(0);" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></a>
+															</div>
+														</fieldset>
+														<fieldset>
+															<div class="wt-checkboxholder wt-verticalscrollbar">
+																<span class="wt-checkbox">
+																	<input id="wt-description" type="checkbox" name="description" value="company" checked>
+																	<label for="wt-description"> <img src="images/flag/img-01.png" alt="img description"> Australia</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="us" type="checkbox" name="description" value="company">
+																	<label for="us"> <img src="images/flag/img-02.png" alt="img description"> United States</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="canada" type="checkbox" name="description" value="company">
+																	<label for="canada"> <img src="images/flag/img-03.png" alt="img description"> Canada</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="england" type="checkbox" name="description" value="company">
+																	<label for="england"> <img src="images/flag/img-04.png" alt="img description"> England</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="emirates" type="checkbox" name="description" value="company">
+																	<label for="emirates"> <img src="images/flag/img-05.png" alt="img description"> United Emirates</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="wt-description1" type="checkbox" name="description" value="company">
+																	<label for="wt-description1"> <img src="images/flag/img-01.png" alt="img description"> Australia</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="us1" type="checkbox" name="description" value="company">
+																	<label for="us1"> <img src="images/flag/img-02.png" alt="img description"> United States</label>
+																</span>
+															</div>
+														</fieldset>
+													</form>
+												</div>
+											</div>
+
+											<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+											<div class="wt-widget wt-effectiveholder rounded-3">
+												<div class="wt-widgettitle">
+													<h2>Skills Required</h2>
+												</div>
+												<div class="wt-widgetcontent">
+													<form class="wt-formtheme wt-formsearch">
+														<fieldset>
+															<div class="wt-checkboxholder">
+																<span class="wt-checkbox">
+																	<input id="proindependent" type="checkbox" name="description" value="company" checked>
+																	<label for="proindependent">Pro Independent Freelancers</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="proagency" type="checkbox" name="description" value="company">
+																	<label for="proagency"> Pro Agency Freelancers</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="independent" type="checkbox" name="description" value="company">
+																	<label for="independent"> Independent Freelancers</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="agency" type="checkbox" name="description" value="company">
+																	<label for="agency">Agency Freelancers</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="rising" type="checkbox" name="description" value="company">
+																	<label for="rising"> New Rising Talent</label>
+																</span>
+															</div>
+														</fieldset>
+													</form>
+												</div>
+											</div>
+
+											<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+											<div class="wt-widget wt-effectiveholder rounded-3">
+												<div class="wt-widgettitle">
+													<h2>Project Length</h2>
+												</div>
+												<div class="wt-widgetcontent">
+													<form class="wt-formtheme wt-formsearch">
+														<fieldset>
+															<div class="wt-checkboxholder">
+																<span class="wt-checkbox">
+																	<input id="anyproject" type="checkbox" name="anyproject" value="project" checked>
+																	<label for="anyproject">Any Project Length</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="01month" type="checkbox" name="01month" value="month">
+																	<label for="01month"> Less Than 01 Month</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="3months" type="checkbox" name="3months" value="months">
+																	<label for="3months"> 01 to 03 Months</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="6months" type="checkbox" name="months" value="months">
+																	<label for="6months"> 03 to 06 Months</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="moremonths" type="checkbox" name="months" value="months">
+																	<label for="moremonths"> More Than 06 Months</label>
+																</span>
+															</div>
+														</fieldset>
+													</form>
+												</div>
+											</div>
+
+											<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+											<div class="wt-widget wt-effectiveholder rounded-3">
+												<div class="wt-widgettitle">
+													<h2>Languages</h2>
+												</div>
+												<div class="wt-widgetcontent">
+													<form class="wt-formtheme wt-formsearch">
+														<fieldset>
+															<div class="form-group">
+																<input type="text" name="fullname" class="form-control" placeholder="Search Language">
+																<a href="javascrip:void(0);" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></a>
+															</div>
+														</fieldset>
+														<fieldset>
+															<div class="wt-checkboxholder wt-verticalscrollbar">
+																<span class="wt-checkbox">
+																	<input id="chinese" type="checkbox" name="description" value="company" checked>
+																	<label for="chinese">Chinese</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="spanish" type="checkbox" name="description" value="company">
+																	<label for="spanish">Spanish</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="english" type="checkbox" name="description" value="company">
+																	<label for="english">English</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="arabic" type="checkbox" name="description" value="company">
+																	<label for="arabic">Arabic</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="russian" type="checkbox" name="description" value="company">
+																	<label for="russian">Russian</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="chinese1" type="checkbox" name="description" value="company">
+																	<label for="chinese1">Chinese</label>
+																</span>
+																<span class="wt-checkbox">
+																	<input id="spanish1" type="checkbox" name="description" value="company">
+																	<label for="spanish1">Spanish</label>
+																</span>
+															</div>
+														</fieldset>
+													</form>
+												</div>
+											</div>
+
+											<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+											<div class="wt-widget wt-effectiveholder rounded-3">
+												<div class="wt-widgetcontent">
+													<div class="wt-applyfilters">
+														<span>Click “Apply Filter” to apply latest<br> changes made by you.</span>
+														<a href="javascript:void(0);" class="wt-btn">Apply Filters</a>
+													</div>
+												</div>
+											</div>
+										</aside>
+									</div>
+
+									<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
+										<div class="wt-userlistingholder wt-haslayout">
+											<div class="wt-userlistingtitle">
+												<span>01 - 48 of 57143 results for <em>"PHP Developer"</em></span>
+											</div>
+											<div class="wt-filterholder">
+												<ul class="wt-filtertag">
+													<li class="wt-filtertagclear">
+														<a href="javascrip:void(0)"><i class="fa fa-times"></i> <span>Clear All Filter</span></a>
+													</li>
+												 	<li class="alert alert-dismissable fade in">
+														<a href="javascrip:void(0)"><i class="fa fa-times close" data-dismiss="alert" aria-label="close"></i> <span>Graphic Design</span></a>
+													</li>
+													<li class="alert alert-dismissable fade in">
+														<a href="javascrip:void(0)"><i class="fa fa-times close" data-dismiss="alert" aria-label="close"></i> <span>Any Hourly Rate</span></a>
+													</li>
+													<li class="alert alert-dismissable fade in">
+														<a href="javascrip:void(0)"><i class="fa fa-times close" data-dismiss="alert" aria-label="close"></i> <span>Any Freelancer Type</span></a>
+													</li>
+													<li class="alert alert-dismissable fade in">
+														<a href="javascrip:void(0)"><i class="fa fa-times close" data-dismiss="alert" aria-label="close"></i> <span>Chinese</span></a>
+													</li>
+													<li class="alert alert-dismissable fade in">
+														<a href="javascrip:void(0)"><i class="fa fa-times close" data-dismiss="alert" aria-label="close"></i> <span>English</span></a>
+													</li>
+												</ul>
+											</div>
+
+
+											<!-- this -->
+
+											@for (project of projects; track project.id) {
+												<div class="project-card" style="position: relative;">
+												  <div class="action-buttons">
+													<button class="action-button">
+													  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#656565" viewBox="0 0 16 16">
+														<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+														<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+													  </svg>
+													</button>
+													<button class="action-button">
+													  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#656565" viewBox="0 0 16 16">
+														<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+													  </svg>
+													</button>
+												  </div>
+											  
+												  <div class="project-header">
+													<div class="posted-time">Posted {{project.postedFrom}} days ago</div>
+													<h3 class="project-title">{{project.title}}</h3>
+												  </div>
+											  
+												  <div class="project-meta">
+													<div class="meta-item">
+													  <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+														<path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
+														<path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
+													  </svg>
+													  <!-- Example: Payment status, adapt as needed -->
+													  {{ project.clientCountry ? 'Payment verified' : 'Payment unverified' }}
+													</div>
+													<div class="meta-item rating">
+													  <span class="empty-star">★</span>
+													  <span class="empty-star">★</span>
+													  <span class="empty-star">★</span>
+													  <span class="empty-star">★</span>
+													  <span class="empty-star">★</span>
+													  <span>{{ project.clientRating }}</span>
+													</div>
+													<!-- <div class="meta-item">
+													  <span>${{ project.amountSpent || 0 }} spent</span>
+													</div> -->
+													<div class="meta-item">
+													  <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+														<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+													  </svg>
+													  {{ project.clientCountry }}
+													</div>
+												  </div>
+											  
+												  <div class="project-budget">
+													<!-- Example: adapt as needed -->
+													{{ project.projectType === 'Hourly' ? 'Hourly: $' + project.minimumPrice + ' - $' + project.maximumprice + ' · ' + project.experienceLevel + ' · Est. time: ' + project.postedFrom : 'Fixed price - ' + project.experienceLevel + ' - Est. budget: $' + project.bidAveragePrice }}
+												  </div>
+											  
+												  <div class="project-description">
+													{{ project.description }}
+												  </div>
+											  
+												  <div class="project-tags">
+													@for (skill of project.projectSkills; track skill) {
+													  <div class="project-tag">{{ skill }}</div>
+													}
+												  </div>
+											  
+												  <div class="proposals-count">Proposals: {{ project.numOfBids }}</div>
+												  <div class="wt-btnarea" style="margin-top: 10px;">
+													<a href="userlisting.html" class="wt-btn">View Job</a>
+												  </div>
+												</div>
+											  }
+
+
+											<!-- this -->
+											
+
+
+
+											<nav class="wt-pagination">
+												<ul>
+													<li class="wt-prevpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-left"></i></a></li>
+													<li><a href="javascrip:void(0);">1</a></li>
+													<li><a href="javascrip:void(0);">2</a></li>
+													<li><a href="javascrip:void(0);">3</a></li>
+													<li><a href="javascrip:void(0);">4</a></li>
+													<li><a href="javascrip:void(0);">...</a></li>
+													<li><a href="javascrip:void(0);">50</a></li>
+													<li class="wt-nextpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-right"></i></a></li>
+												</ul>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- User Listing End-->
+				</div>
+			</main>
+
+
+
+			<!--Main End-->
+
+
+
+			<!--Footer Start-->
+			<footer id="wt-footer" class="wt-footer wt-haslayout">
+				<div class="wt-footerholder wt-haslayout">
+					<div class="container">
+						<div class="row">
+							<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+								<div class="wt-footerlogohold">
+									<strong class="wt-logo"><a href="index-2.html"><img src="images/flogo.png" alt="company logo here"></a></strong>
+									<div class="wt-description">
+										<p>Dotem eiusmod tempor incune utnaem labore etdolore maigna aliqua enim poskina ilukita ylokem lokateise ination voluptate velit esse cillum dolore eu fugiat nulla pariatur lokaim urianewce <a href="javascript:void(0);">more...</a></p>
+									</div>
+									<ul class="wt-socialiconssimple wt-socialiconfooter">
+										<li class="wt-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook-f"></i></a></li>
+										<li class="wt-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
+										<li class="wt-youtube"><a href="javascript:void(0);"><i class="fab fa-youtube"></i></a></li>
+										<li class="wt-instagram"><a href="javascript:void(0);"><i class="fab fa-instagram"></i></a></li>
+										<li class="wt-googleplus"><a href="javascript:void(0);"><i class="fab fa-google-plus-g"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 col-md-3 col-lg-3">
+								<div class="wt-footercol wt-widgetcompany">
+									<div class="wt-fwidgettitle">
+										<h3>Company</h3>
+									</div>
+									<ul class="wt-fwidgetcontent">
+										<li><a href="javascript:void(0);">About Us</a></li>
+										<li><a href="javascript:void(0);">How It Works</a></li>
+										<li><a href="javascript:void(0);">Careers</a></li>
+										<li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
+										<li><a href="javascript:void(0);">Trust &amp; Safety</a></li>
+										<li class="wt-viewmore"><a href="javascript:void(0);">+ View All</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 col-md-3 col-lg-3">
+								<div class="wt-footercol wt-widgetexplore">
+									<div class="wt-fwidgettitle">
+										<h3>Explore More</h3>
+									</div>
+									<ul class="wt-fwidgetcontent">
+										<li><a href="javascript:void(0);">Freelancers in USA</a></li>
+										<li><a href="javascript:void(0);">Freelancers in Canada</a></li>
+										<li><a href="javascript:void(0);">Freelancers in Australia</a></li>
+										<li><a href="javascript:void(0);">Jobs in USA</a></li>
+										<li><a href="javascript:void(0);">Find Jobs</a></li>
+										<li class="wt-viewmore"><a href="javascript:void(0);">+ View All</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wt-haslayout wt-joininfo">
+					<div class="container">
+						<div class="row justify-content-md-center">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 push-lg-1">
+								<div class="wt-companyinfo">
+									<span><a href="javascript:void(0);">New Worktern?</a> Dotem eiusmod tempor incune utnaem labore etdolore.</span>
+								</div>
+								<div class="wt-fbtnarea">
+									<a href="javascript:void(0)" class="wt-btn">Join Now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wt-haslayout wt-footerbottom">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<p class="wt-copyrights"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+								<nav class="wt-addnav">
+									<ul>
+										<li><a href="javascript:void(0);">News</a></li>
+										<li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
+										<li><a href="javascript:void(0);">Privacy Policy</a></li>
+										<li><a href="javascript:void(0);">Career</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!--Footer End-->
+		</div>
+		<!--Content Wrapper End-->
+	</div>
+	<!--Wrapper End-->
+	<!-- <script src="js/vendor/jquery-3.3.1.js"></script>
+	<script src="js/vendor/jquery-library.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/chosen.jquery.js"></script>
+	<script src="js/tilt.jquery.js"></script>
+	<script src="js/scrollbar.min.js"></script>
+	<script src="js/prettyPhoto.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/readmore.js"></script>
+	<script src="js/countTo.js"></script>
+	<script src="js/appear.js"></script>
+	<script src="js/tipso.js"></script>
+	<script src="js/jRate.js"></script>
+	<script src="js/main.js"></script> -->

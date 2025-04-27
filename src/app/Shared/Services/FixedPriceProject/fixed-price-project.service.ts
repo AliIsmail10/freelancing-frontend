@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FixedPriceProject, FixedPriceProjectById } from '../../Interfaces/FixedPriceProject';
+import { FixedPriceProject, FixedPriceProjectById, ProjectsResponse } from '../../Interfaces/FixedPriceProject';
 import { FixedProjectFilters } from '../../Interfaces/FixedPriceProjectFilters';
 import { CreateFixedProjectDTO } from '../../Interfaces/createfixedproject';
 import { Environment } from '../../../base/environment';
@@ -13,7 +13,10 @@ export class FixedPriceProjectService {
   private apiUrl = `${Environment.baseUrl}FixedPriceProject`;
 
   constructor(private http: HttpClient) {}
-
+  getmyprojects():Observable<FixedPriceProject[]>
+  {
+    return this.http.get<FixedPriceProject[]>(this.apiUrl+"/myfixedpriceprojects");
+  }
   getProjects(filters: FixedProjectFilters = {}): Observable<FixedPriceProject[]> {
     // const baseUrl = 'https://localhost:7093/api/FixedPriceProject';
     // const searchParams = new URLSearchParams();
@@ -66,4 +69,27 @@ deleteProject(id: number): Observable<any> {
   return this.http.delete(url);
 }
 
+
+
+
+getProjectsFixedDashBoard(filters: FixedProjectFilters = {}): Observable<ProjectsResponse> {
+
+  let params = new HttpParams();
+
+    Object.entries(filters).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach(val => {
+          params = params.append(key, val.toString());
+        });
+      } else if (value !== null && value !== undefined) {
+        params = params.set(key, value.toString());
+      }
+    });
+
+    return this.http.get<ProjectsResponse>(this.apiUrl, { params });
+
 }
+}
+
+
+

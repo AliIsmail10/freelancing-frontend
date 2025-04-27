@@ -10,3 +10,6 @@ export enum Environment {
 export enum Files {
     filesUrl= "https://localhost:7093/files",
 }
+export enum projectImages {
+    filesUrl= "https://localhost:7093/projectimages",
+}
