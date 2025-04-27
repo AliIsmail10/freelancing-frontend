@@ -12,6 +12,26 @@ import { CreateUpdateReturn } from '../../Interfaces/BiddingProject/create-updat
 @Injectable({
   providedIn: 'root'
 })
+// for(const key in filter){
+    //   const value= filter[key as keyof BiddingProjectFilter]
+    //   if(value !==null && value!==undefined){
+    //     params=params.set(key, value.toString());
+    //   }
+    // }
+    // for (const key in filter) {
+    //   const value = filter[key as keyof BiddingProjectFilter];
+    //   if (value !== null && value !== undefined) {
+    //     if (Array.isArray(value)) {
+    //       // Handle array values by appending multiple params with same key
+    //       value.forEach(item => {
+    //         params = params.append(key, item.toString());
+    //       });
+    //     } else {
+    //       // Handle non-array values normally
+    //       params = params.set(key, value.toString());
+    //     }
+    //   }
+    // }
 export class BiddingProjectService {
 
   constructor(private httpClinet:HttpClient) { }
@@ -22,15 +42,8 @@ export class BiddingProjectService {
     let params=new HttpParams()
     .set('PageNumber',PageNumber.toString())
     .set('PageSize', PageSize.toString())
-
-    for(const key in filter){
-      const value= filter[key as keyof BiddingProjectFilter]
-      if(value !==null && value!==undefined){
-        params=params.set(key, value.toString());
-      }
-    }
-
-    return this.httpClinet.get<BiddingProjectGetAll[]>(this.Url,{params})
+   
+    return this.httpClinet.post<BiddingProjectGetAll[]>(`${this.Url}/Filter`,filter,{params})
    }
 
 
