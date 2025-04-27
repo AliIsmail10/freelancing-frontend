@@ -1,7 +1,7 @@
 import { Component, NgModule, OnInit, ViewEncapsulation } from '@angular/core';
 import { CategoryService } from '../../Shared/Services/Category/category.service';
 import { Category } from '../../Shared/Interfaces/category';
-import { Country } from '../../Shared/Interfaces/country';
+import { Country } from '../../Shared/Interfaces/Country';
 import { CountriesService } from '../../Shared/Services/Countries/countries.service';
 import { SubCategoryService } from '../../Shared/Services/SubCategory/sub-category.service';
 import { Currency } from '../../Shared/Enums/currency';
