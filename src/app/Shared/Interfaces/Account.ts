@@ -112,13 +112,17 @@ export type AppUsers = AppUser[]
 export interface AppUser {
   id: string
   userName: string
+  firstname:string
+  lastname:string
+  title:string
   email: string
   phoneNumber?: string
   profilePicture?: string
-  city: any
-  country: any
+  city: string
+  country: string
+  nationalId?:string
   dateOfBirth: string
-  description: any
+  description: string
   role: string
   isVerified: boolean
   accountCreationDate: string
@@ -158,14 +162,15 @@ export interface VerificationDecision {
 export interface EditProfileDTO {
   firstname: string;
   lastname: string;
-  city: string;
-  userName: string;
-  description: string | null;
-  dateOfBirth: Date; // Use string for date format 'YYYY-MM-DD'
-  phoneNumber: string;
-  password: string;
-  confirmPassword: string | null;
-  profilePicture: File | null; // Use the built-in File type instead of FormFile
+  title:string;
+  CityId: number;
+  UserName: string;
+  Description: string | null;
+  DateOfBirth: Date; // Use string for date format 'YYYY-MM-DD'
+  PhoneNumber: string;
+  Password: string;
+  ConfirmPassword: string | null;
+  ProfilePicture: File | null; // Use the built-in File type instead of FormFile
 }
 
 export interface CreateAdminDTO {

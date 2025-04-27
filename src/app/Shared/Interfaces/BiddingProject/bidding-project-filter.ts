@@ -9,6 +9,14 @@ export interface BiddingProjectFilter {
     ClientCountry?: number[]
     MinExpectedDuration?: number
     MaxExpectedDuration?: number
-    MinNumOfProposals?: number
-    MaxNumOfProposals?: number
+    // MinNumOfProposals?: number
+    // MaxNumOfProposals?: number
+    ProposalRange?: ProposalRangeDTO[]
+}
+
+export interface ProposalRangeDTO{
+    min:number
+    max:number
+    isManual?: boolean;
+
 }

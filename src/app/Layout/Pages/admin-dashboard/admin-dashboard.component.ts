@@ -254,17 +254,17 @@ export class AdminDashboardComponent implements OnInit {
           }
         });
 
-        biddingProjects.forEach(project => {
-          console.log('Bidding Project Status:', project.status);
-          if (project.status) {
-            const status = project.status.toString().toLowerCase();
-            if (status.includes('pending')) pending++;
-            else if (status.includes('completed')) completed++;
-            else if (status.includes('working')) Working++;
-          } else {
-            pending++;
-          }
-        });
+        // biddingProjects.forEach(project => {
+        //   console.log('Bidding Project Status:', project.status);
+        //   if (project.status) {
+        //     const status = project.status.toString().toLowerCase();
+        //     if (status.includes('pending')) pending++;
+        //     else if (status.includes('completed')) completed++;
+        //     else if (status.includes('working')) Working++;
+        //   } else {
+        //     pending++;
+        //   }
+        // });
 
         this.total = fixedProjects.length + biddingProjects.length;
 
@@ -356,10 +356,10 @@ export class AdminDashboardComponent implements OnInit {
       map((skills: UserSkill[]) => {
         const skillCounts = new Map<string, number>();
         skills.forEach(skill => {
-          const count = skillCounts.get(skill.skillName) || 0;
-          skillCounts.set(skill.skillName, count + 1);
+          const count = skillCounts.get(skill.skillName??"") || 0;
+          skillCounts.set(skill.skillName??"", count + 1);
         });
-
+//changed
         this.topSkills = Array.from(skillCounts.entries())
           .map(([name, count]) => ({ name, count }))
           .sort((a, b) => b.count - a.count)
@@ -464,14 +464,14 @@ export class AdminDashboardComponent implements OnInit {
           });
         });
 
-        biddingProjects.forEach(project => {
-          if (project.status && project.status.toLowerCase().includes('completed')) {
-            const date = new Date(project.postedFrom);
-            const month = date.toLocaleString('default', { month: 'short', year: 'numeric' });
-            const revenue = monthlyRevenue.get(month) || 0;
-            monthlyRevenue.set(month, revenue + project.bidAveragePrice);
-          }
-        });
+        // biddingProjects.forEach(project => {
+        //   if (project.status && project.status.toLowerCase().includes('completed')) {
+        //     const date = new Date(project.postedFrom);
+        //     const month = date.toLocaleString('default', { month: 'short', year: 'numeric' });
+        //     const revenue = monthlyRevenue.get(month) || 0;
+        //     monthlyRevenue.set(month, revenue + project.bidAveragePrice);
+        //   }
+        // });
 
         const sortedMonths = Array.from(monthlyRevenue.keys()).sort((a, b) => {
           const dateA = new Date(`01 ${a}`);

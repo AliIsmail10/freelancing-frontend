@@ -12,7 +12,10 @@ export interface BiddingProjectGetAll {
   postedFrom: number
   clientTotalNumberOfReviews: number
   clientRating: number
-  status?: string; 
+  clientCountry:string
+  numOfBids:number
+  clientIsVerified:boolean
+  expectedDuration:number
 }
 
 export interface BiddingProjectsResponse {

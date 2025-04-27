@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/environment';
+import { Country } from '../../Interfaces/Country';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,8 @@ export class CountriesService {
 
   constructor(private _HttpClient:HttpClient) { }
 
-  getCountries() {
-    return this._HttpClient.get<any[]>(`${this.apiUrl}Country`);
+  getCountries():Observable<Country[]> {
+    return this._HttpClient.get<Country[]>(`${this.apiUrl}Country`);
   }
 
 }
