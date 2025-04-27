@@ -43,10 +43,35 @@
             <div class="detail">
               <span>Amount: ${{milestone.amount}}</span>
             </div>
-          </div>
+            
+          </div> 
         </div>
 
-      
+
+        <div class="milestone-files" *ngIf="milestone.files && milestone.files.length > 0">
+          <h4>Attachments</h4>
+          <div class="file-list">
+            <div class="detail" *ngFor="let file of milestone.files">
+              <ng-container [ngSwitch]="getFileType(file)">
+                <!-- Image Preview -->
+                <img *ngSwitchCase="'image'" [src]="file" alt="Milestone Image" class="milestone-image"/>
+        
+                <!-- Video Preview -->
+                <video *ngSwitchCase="'video'" [src]="file" controls class="milestone-video"></video>
+        
+                <!-- Other Files Download -->
+                <div *ngSwitchDefault class="file-item">
+                  <i class="fas fa-file"></i>
+                  <span>Attached File: 
+                    <a [href]="file" target="_blank" download>Download File</a>
+                  </span>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        
+        
     
     </div>
 

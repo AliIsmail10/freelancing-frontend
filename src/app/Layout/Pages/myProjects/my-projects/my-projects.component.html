@@ -8,6 +8,14 @@
         </div>
       </div>
     </div>
+
+    <ng-template #noProjects>
+      <div class="no-projects">
+        <i class="fas fa-folder-open"></i>
+        <h2>No Projects Found</h2>
+        <p>You haven't created any projects yet.</p>
+      </div>
+    </ng-template>
   
     <div class="projects-grid" *ngIf="projects.length > 0; else noProjects">
       <div class="project-card" *ngFor="let project of projects">
@@ -23,16 +31,27 @@
         <div class="project-details">
           <div class="detail-row">
             <i class="fas fa-calendar"></i>
-            <span>Start Date: {{project.startDate | date}}</span>
+            <span>Created At: {{project.createdAt | date}}</span>
           </div>
+
+          <div class="project-details">
+            <div class="detail-row">
+              <i class="fas fa-calendar-times"></i>
+              <span>Ended At: {{project.endDate | date}}</span>
+            </div>
+            
+          
+          
+         
           <div class="detail-row">
-            <i class="fas fa-money-bill-wave"></i>
-            <span>Budget: ${{project.budget}}</span>
+            <i class="fas fa-star"></i>
+            <span>Experience Level: {{project.experienceLevel}}</span>
           </div>
           <div class="detail-row">
             <i class="fas fa-clock"></i>
-            <span>Duration: {{project.duration}}</span>
+            <span>Duration: {{project.expectedDuration}}</span>
           </div>
+          
         </div>
   
         <div class="project-actions">
@@ -42,11 +61,5 @@
       </div>
     </div>
   
-    <ng-template #noProjects>
-      <div class="no-projects">
-        <i class="fas fa-folder-open"></i>
-        <h2>No Projects Found</h2>
-        <p>You haven't created any projects yet.</p>
-      </div>
-    </ng-template>
+   
   </div>

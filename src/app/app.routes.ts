@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
 
     {path:'milestone',component:MilestonesComponent,title:'milestone'},
-    {path:'Projects',component:MyProjectsComponent,title:'MyProjects'},
+    {path:'myprojects',component:MyProjectsComponent,title:'MyProjects'},
     {path: 'milestones/:projectId',component: MilestonesComponent},
     {path: 'proposaldetails/:projectId',component: ProposalDetailsComponent,title:'ProposalDetails'},
 
