@@ -24,7 +24,7 @@
             "src/favicon.ico",
            "src/assets/js/main.js",
             {
-              "glob": "/*",
+              "glob": "**/*",
               "input": "public"
             },
             {

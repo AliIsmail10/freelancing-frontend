@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { CreateProposalDTO, ProposalsView, ProposalView, UpdateProposalProposalDTO } from '../../Interfaces/Proposal';
 
 @Injectable({
@@ -26,7 +26,12 @@ export class ProposalService {
   return this._HttpClient.get<ProposalsView>(`${this.apiUrl}/getbyfreelancerId/${freelancername}`);
   }
   CreateProposal(dto:CreateProposalDTO):Observable<ProposalView>{
-  return this._HttpClient.post<ProposalView>(`${this.apiUrl}`,dto);
+  return this._HttpClient.post<ProposalView>(`${this.apiUrl}`,dto)
+  .pipe(
+    catchError((error: HttpErrorResponse) => {
+      return throwError(() => error);
+    })
+  );
   }
   UpdateProposal(id:number,dto:UpdateProposalProposalDTO):Observable<ProposalView>{
     return this._HttpClient.put<ProposalView>(`${this.apiUrl}/${id}`,dto);

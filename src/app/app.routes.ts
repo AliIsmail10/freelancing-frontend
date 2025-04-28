@@ -80,6 +80,10 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
+import { ProposalComponent } from './Components/proposal/proposal.component';
+import { Proposal2Component } from './Components/proposal2/proposal2.component';
+import { NewNavBarComponent } from './Components/new-nav-bar/new-nav-bar.component';
+import { HomeNewComponent } from './Components/home-new/home-new.component';
 
 
 
@@ -120,7 +124,13 @@ export const routes: Routes = [
           {path: 'dashboard', component: UserDashboradComponent},
           {path: 'test',component: TestComponent},
           {path: 'new',component: BiddingProjectNewComponent},
-          {path: 'details/:id',component: BiddingProjectDetailsComponent}
+          {path: 'details/:id',component: BiddingProjectDetailsComponent},
+          {path: 'proposal/:id',component: ProposalComponent},
+          {path: 'proposal2/:id',component: Proposal2Component},
+          {path: 'navbar',component: NewNavBarComponent},
+          {path: 'NewHome2',component: HomeNewComponent},
+          
+
 
         ]
       },

@@ -49,7 +49,9 @@ project: BiddingProjectGetById={
   clientOtherProjectsIdsNotAssigned:[],
   numOfBids:0,
   clientProjectsTotalCount:0,
-  clientId:''
+  clientId:'',
+  expectedDuration:0,
+  endDate:''
 };
 
 
