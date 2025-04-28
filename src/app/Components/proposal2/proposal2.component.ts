@@ -56,7 +56,8 @@ export class Proposal2Component {
           this.proposal.projectId = data.id;
           this.projectType = 'Bidding';
           this.proposal.type = ProjectType.Bidding;
-        } else {
+        } 
+        else {
           this.fixedPriceService.getProjectById(id).subscribe({
             next: (data) => {
               this.project = data;
