@@ -1,5 +1,5 @@
 export interface Milestone {
-files: any
+files?: string[];
   id?: number //null in case of CreateMilestone
   title: string
   description: string

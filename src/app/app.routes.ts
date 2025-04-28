@@ -83,6 +83,7 @@ import { BiddingProjectDetailsComponent } from './Components/bidding-project-det
 import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
 import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
 import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
+import { ProposalComponent } from './Layout/Pages/Proposal/proposal/proposal.component';
 
 
 
@@ -92,10 +93,12 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
 
     {path:'milestone',component:MilestonesComponent,title:'milestone'},
-    {path:'Projects',component:MyProjectsComponent,title:'MyProjects'},
+    {path:'myprojects',component:MyProjectsComponent,title:'MyProjects'},
     {path: 'milestones/:projectId',component: MilestonesComponent},
     {path: 'proposaldetails/:projectId',component: ProposalDetailsComponent,title:'ProposalDetails'},
     {path: 'VerificationRequests',component: IdentityVerificationDeicisionComponent},
+    {path: 'proposals/:projectId',component: ProposalComponent,title:'proposals'},
+
 
     {path:'register', loadComponent: () => import('./Layout/Pages/register/register.component').then(m => m.RegisterComponent)},
     {
