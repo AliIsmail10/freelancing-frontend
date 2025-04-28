@@ -11,6 +11,7 @@ export interface Milestone {
     id: number;
     title: string;
     description: string;
+    price: number;
     currency: string;
     expectedDuration: number;
     subcategoryID: number;
@@ -24,6 +25,7 @@ export interface Milestone {
     id: number
     title: string
     description: string
+    price: number
     currency: string
     expectedDuration: number
     subcategoryID: number
@@ -31,6 +33,7 @@ export interface Milestone {
     proposalsCount: number
     projectSkills: string[]
     milestones: any[]
+    endDate:string
   }
   export interface ProjectsResponse {
     totalCount: number;

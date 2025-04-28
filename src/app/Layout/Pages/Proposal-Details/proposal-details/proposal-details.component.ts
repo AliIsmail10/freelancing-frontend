@@ -25,7 +25,7 @@ export class ProposalDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.projectId = +params['projectId'];
       this.loadProposalDetails(this.projectId);
-      this.loadSubmitMilestone(this.projectId);
+    //  this.loadSubmitMilestone(this.projectId);
       console.log(this.projectId);
       
      }
@@ -51,17 +51,17 @@ export class ProposalDetailsComponent implements OnInit {
     });
     }
 
- loadSubmitMilestone(projectId: number) {
-    this.milestoneService.GetMilestoneByProjectId(projectId).subscribe({
-      next: (data: any) => {
-        this.milestones = Array.isArray(data) ? data : [data];
-        console.log('Milestones loaded:', this.milestones);
-      },
-      error: (error) => {
-        console.error('Error submitting milestone:', error);
-      }
-    });
-  }
+//  loadSubmitMilestone(projectId: number) {
+//     this.milestoneService.GetMilestoneByProjectId(projectId).subscribe({
+//       next: (data: any) => {
+//         this.milestones = Array.isArray(data) ? data : [data];
+//         console.log('Milestones loaded:', this.milestones);
+//       },
+//       error: (error) => {
+//         console.error('Error submitting milestone:', error);
+//       }
+//     });
+//   }
  }
   
 

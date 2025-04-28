@@ -69,6 +69,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './Layout/Pages/home/home.component';
 import { Home2Component } from './Layout/Pages/home2/home2.component';
+import { FixedProjectComponent } from './Layout/Pages/fixed-project/fixed-project.component';
+import { FixedProjectDetailsComponent } from './Layout/Pages/fixed-project-details/fixed-project-details.component';
+import { CreateProjectComponent } from './Layout/Pages/create-project/create-project.component';
+import { SubscribtionPlanComponent } from './Layout/Pages/subscribtion-plan/subscribtion-plan.component';
 import { BannedUsersComponent } from './Layout/Pages/banned-users/banned-users.component';
 import { MilestonesComponent } from './Layout/Pages/Milestones/milestones/milestones.component';
 import { MyProjectsComponent } from './Layout/Pages/myProjects/my-projects/my-projects.component';
@@ -80,6 +84,11 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
+import { ProposalComponent } from './Components/proposal/proposal.component';
+import { Proposal2Component } from './Components/proposal2/proposal2.component';
+import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
+import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
+import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
 
 
 
@@ -87,11 +96,46 @@ export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
+    {path: 'fixed', component: FixedProjectComponent},
+    {path: 'createproject', component: CreateProjectComponent},
+    {path: 'subscribtion', component: SubscribtionPlanComponent},
+
+
+
+   // {path: 'fixeddetails/:id', component: FixedProjectDetailsComponent},
+  {  path: 'fixed-project/:id',
+    loadComponent: () => import('../app/Layout/Pages/fixed-project-details/fixed-project-details.component')
+      .then(m => m.FixedProjectDetailsComponent)}
+   // { path: 'test', component: TestComponent },
+
+
+
+    // {
+    //     path: 'home2',
+    //     component: Home2Component, 
+    //     children: [
+    //         {path: 'profile', loadComponent: () => import('./Layout/Pages/profile/profile.component').then(m => m.ProfileComponent)},
+         
+    //     ]  
+    //   },
+    //   {
+    //     path: 'home',
+    //     component: HomeComponent,
+    //     children: [
+    //       { path: 'test', component: TestComponent }
+    //     ]
+    //   },
+  
+
+
+  ,
 
     {path:'milestone',component:MilestonesComponent,title:'milestone'},
     {path:'myprojects',component:MyProjectsComponent,title:'MyProjects'},
     {path: 'milestones/:projectId',component: MilestonesComponent},
     {path: 'proposaldetails/:projectId',component: ProposalDetailsComponent,title:'ProposalDetails'},
+    {path: 'VerificationRequests',component: IdentityVerificationDeicisionComponent},
+    {path: 'proposals/:projectId',component: ProposalComponent,title:'proposals'},
 
 
     {path:'register', loadComponent: () => import('./Layout/Pages/register/register.component').then(m => m.RegisterComponent)},
@@ -123,6 +167,10 @@ export const routes: Routes = [
           {path: 'details/:id',component: BiddingProjectDetailsComponent},
           {path:'allusers',loadComponent: () => import('./Layout/Pages/AllUsers/allusers.component').then(m => m.AllusersComponent)},
           {path :'addAdmin',loadComponent: () => import('./Layout/Pages/add-admin/add-admin.component').then(m => m.AddAdminComponent)},
+          {path: 'proposal2/:id',component: Proposal2Component},
+          {path: 'Freelancers',component: FreelancersComponent},
+          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent}
+
         ]
       },
    

@@ -1,0 +1,102 @@
+<div class="first">
+<div class="proposal-apply-container">
+    <div class="proposal-apply-main">
+      <h2 class="proposal-title">Submit a Proposal</h2>
+      <form #proposalForm="ngForm" (ngSubmit)="submitProposal()">
+        <!-- Bid Section -->
+        <div class="proposal-section">
+          <label class="proposal-label" for="bidAmount">
+            <i class="fas fa-dollar-sign"></i> Bid Amount
+          </label>
+          <input
+            type="number"
+            id="bidAmount"
+            name="bidAmount"
+            class="proposal-input"
+            [(ngModel)]="proposal.bidAmount"
+            required
+            min="1"
+          />
+        </div>
+  
+        <!-- Cover Letter Section -->
+        <div class="proposal-section">
+          <label class="proposal-label" for="coverLetter">
+            <i class="fas fa-align-left"></i> Cover Letter
+          </label>
+          <textarea
+            id="coverLetter"
+            name="coverLetter"
+            class="proposal-textarea"
+            [(ngModel)]="proposal.coverLetter"
+            rows="7"
+            required
+            placeholder="Describe why you are a great fit for this job..."
+          ></textarea>
+        </div>
+  
+        <!-- Attachments Section -->
+        <div class="proposal-section">
+          <label class="proposal-label">
+            <i class="fas fa-paperclip"></i> Attachments (optional)
+          </label>
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            multiple
+            class="proposal-input"
+          />
+          <div class="proposal-attachments-list" *ngIf="proposal.attachments.length">
+            <div *ngFor="let file of proposal.attachments" class="proposal-attachment-item">
+              <i class="fas fa-file"></i> {{ file.name }}
+            </div>
+          </div>
+        </div>
+  
+        <!-- Optional Questions (if any) -->
+        <div class="proposal-section" *ngIf="jobQuestions.length">
+          <label class="proposal-label">
+            <i class="fas fa-question-circle"></i> Additional Questions
+          </label>
+          <div *ngFor="let q of jobQuestions; let i = index">
+            <div class="proposal-question">{{ q }}</div>
+            <textarea
+              class="proposal-textarea"
+              name="answer{{i}}"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+        </div>
+  
+        <!-- Submit Button (for mobile) -->
+        <div class="proposal-submit-mobile">
+          <button class="proposal-submit-btn" type="submit" [disabled]="!proposalForm.form.valid">
+            Submit Proposal
+          </button>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Sidebar -->
+    <div class="proposal-apply-sidebar">
+      <div class="proposal-sidebar-card">
+        <h3>Job Summary</h3>
+        <div class="sidebar-job-title">{{ job.title }}</div>
+        <div class="sidebar-job-info">
+          <div><i class="fas fa-tag"></i> {{ job.projectType }}</div>
+          <div><i class="fas fa-dollar-sign"></i> ${{ job.minimumPrice }} - ${{ job.maximumprice }}</div>
+          <div><i class="fas fa-user-cog"></i> {{ job.experienceLevel }}</div>
+          <div><i class="fas fa-clock"></i> {{ job.biddingEndDate | timeLeft }}</div>
+        </div>
+        <div class="sidebar-job-skills">
+          <span *ngFor="let skill of job.projectSkills" class="sidebar-skill">{{ skill }}</span>
+        </div>
+      </div>
+      <button class="proposal-submit-btn" type="submit" [disabled]="!proposalForm.form.valid" (click)="submitProposal()">
+        Submit Proposal
+      </button>
+    </div>
+  </div>
+
+</div>

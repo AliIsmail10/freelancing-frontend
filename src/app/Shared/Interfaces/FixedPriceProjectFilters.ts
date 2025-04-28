@@ -9,7 +9,7 @@ export interface FixedProjectFilters {
     maxProposals?: number;
     categoryIds?: number[];
     subcategoryIds?: number[];
-    currency?: Currency;
+    currency?: Currency[];
     minPrice?: number;
     maxPrice?: number;
     minDuration?: number;

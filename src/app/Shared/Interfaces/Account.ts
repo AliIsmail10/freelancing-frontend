@@ -59,7 +59,7 @@ export interface FreelancerView {
   }
 
   export interface FilteredFreelancers {
-    result: FreelancersFilterationResult[]
+    result: FreelancersFilterationResult
     response: Response
   }
   export interface Response {
@@ -136,6 +136,7 @@ export interface AppUser {
 export type UsersRequestingVerificaiton = UserRequestingVerificaiton[]
 
 export interface UserRequestingVerificaiton {
+  id:string
   firstname: string
   lastname: string
   dateOfBirth: string

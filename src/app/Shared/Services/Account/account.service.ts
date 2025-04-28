@@ -107,7 +107,7 @@ export class AccountService {
       formData.append('fullName', request.fullName);
       formData.append('nationalId', request.nationalId);
       formData.append('idPicture', request.idPicture);
-      
+
       return this._HttpClient.post<string>(`${this.apiUrl}/RequestIdentityVerification`, formData);
   }
     VerifyIdentity(decision:VerificationDecision):Observable<string>{
@@ -169,6 +169,11 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
       return this._HttpClient.post(`${this.apiUrl}/RemoveAdmin`, { UserId: userId });
     }
 
+
+    
+
+   
+
     CreateAdminAccount(AdminData: FormData): Observable<CreateAdminResponse> {
       return this._HttpClient.post<CreateAdminResponse>(`${this.apiUrl}/CreateAdminAccount`, AdminData);
   }
@@ -178,7 +183,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
     Register(formData: FormData): Observable<any> {
       return this._HttpClient.post<any>(`${this.apiUrl}/Register`, formData);
     }
-    
+
 
 
   Login(dto:LoginDTO):Observable<Tokens>{
@@ -189,7 +194,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
     return this._HttpClient.post<Tokens>(`${this.apiUrl}/Refresh-Token`,dto);
   }
 
-  
+
   ForgotPassword(dto: ForgotPasswordDTO, reseturl: string): Observable<string> {
     return this._HttpClient.post<string>(
       `${this.apiUrl}/ForgotPassword?reseturl=${reseturl}`,
@@ -207,7 +212,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
       params: new HttpParams().set('emailToBeCONFIRMED', email)
     });
   }
-  
+
 
 ExternalLogin(provider: string, role?: UserRole, returnUrl?: string, errorUrl?: string): Observable<any> {
   let params = new HttpParams()
@@ -233,7 +238,7 @@ private toastr=inject(ToastrService);
 checkExternalLogin(): void {
   const url = new URL(window.location.href);
   const error = url.searchParams.get('error');
-  
+
   if (error) {
     this.toastr.error(error);
     // Clean the URL
@@ -242,10 +247,11 @@ checkExternalLogin(): void {
 }
 
 
+
 }
 
     // getProfile(): Observable<EditProfileDTO> {
     //   return this.http.get<EditProfileDTO>(`${this.apiUrl}`);
     // }
-    
-  
+
+

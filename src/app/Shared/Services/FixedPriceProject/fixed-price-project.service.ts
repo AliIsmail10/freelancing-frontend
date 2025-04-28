@@ -5,6 +5,7 @@ import { FixedPriceProject, FixedPriceProjectById, ProjectsResponse } from '../.
 import { FixedProjectFilters } from '../../Interfaces/FixedPriceProjectFilters';
 import { CreateFixedProjectDTO } from '../../Interfaces/createfixedproject';
 import { Environment } from '../../../base/environment';
+import { map } from 'rxjs/operators'; 
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +14,36 @@ export class FixedPriceProjectService {
   private apiUrl = `${Environment.baseUrl}FixedPriceProject`;
 
   constructor(private http: HttpClient) {}
+
+  // getProjects(filters: FixedProjectFilters = {}): Observable<FixedPriceProject[]> {
+    
+
+  //   let params = new HttpParams();
+
+  //   // Convert each filter to query params
+  //   Object.entries(filters).forEach(([key, value]) => {
+  //     if (Array.isArray(value)) {
+  //       value.forEach(val => {
+  //         params = params.append(key, val.toString());
+  //       });
+  //     } else if (value !== null && value !== undefined) {
+  //       params = params.set(key, value.toString());
+  //     }
+  //   });
+
+  //   return this.http.get<FixedPriceProject[]>(this.apiUrl, { params });
+  // }
   getmyprojects():Observable<FixedPriceProject[]>
   {
     return this.http.get<FixedPriceProject[]>(this.apiUrl+"/myfixedpriceprojects");
   }
+  getuserprojects(username:string):Observable<FixedPriceProject[]>
+  {
+    return this.http.get<FixedPriceProject[]>(this.apiUrl+`/userfixedpriceprojects/${username}`);
+  }
   getProjects(filters: FixedProjectFilters = {}): Observable<FixedPriceProject[]> {
-    // const baseUrl = 'https://localhost:7093/api/FixedPriceProject';
-    // const searchParams = new URLSearchParams();
-    // const fullUrl = `${baseUrl}?${searchParams.toString()}`;
-   // console.log('Request URL:', fullUrl);
-
     let params = new HttpParams();
-
-    // Convert each filter to query params
+  
     Object.entries(filters).forEach(([key, value]) => {
       if (Array.isArray(value)) {
         value.forEach(val => {
@@ -35,16 +53,18 @@ export class FixedPriceProjectService {
         params = params.set(key, value.toString());
       }
     });
-
-    return this.http.get<FixedPriceProject[]>(this.apiUrl, { params });
+  
+    // 👇 Change `FixedPriceProject[]` to `any` so we can map it
+    return this.http.get<any>(this.apiUrl, { params }).pipe(
+      // 👇 Extract the actual array from the API response
+      map(response => response.projects)
+    );
   }
 
 // Method to get a project by its ID
   getProjectById(projectId: number): Observable<FixedPriceProjectById> {
     const url = `${this.apiUrl}/${projectId}`; // Construct the URL for the specific project by ID
-    //const baseUrl = 'https://localhost:7093/api/FixedPriceProject';
-    //const searchParams = new URLSearchParams();
-   // const fullUrl = `${baseUrl}?${searchParams.toString()}`;
+   
     console.log('mahoud URL:', url);
     return this.http.get<FixedPriceProjectById>(url); // Perform the GET request and return the project data
   }
