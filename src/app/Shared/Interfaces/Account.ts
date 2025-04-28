@@ -189,7 +189,8 @@ export interface CreateAdminDTO {
 
 export enum UserRole {
   Freelancer = 'Freelancer',
-  Client = 'Client'
+  Client = 'Client',
+  Admin = 'Admin',
 }
 
 export interface RegisterDTO {

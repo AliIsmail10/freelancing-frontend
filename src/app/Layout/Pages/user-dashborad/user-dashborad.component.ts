@@ -84,8 +84,6 @@ export class UserDashboradComponent implements OnInit {
 
   pendingCertificates = 0;
 
-  topSkills: { name: string; count: number }[] = [];
-
   languageDistribution: { language: string; count: number }[] = [];
 
   revenueChartData: ChartConfiguration<'line'>['data'] = {
@@ -180,8 +178,7 @@ export class UserDashboradComponent implements OnInit {
       this.loadProjectStatistics(),
       this.loadProposalStatistics(),
       this.loadCertificateStatistics(),
-      this.loadTopSkills(),
-      this.loadLanguageDistribution(),
+      // this.loadLanguageDistribution(),
       this.loadRevenueData()
     ]).subscribe({
       next: () => {
@@ -209,8 +206,6 @@ export class UserDashboradComponent implements OnInit {
         this.projectStats.completed = response.completed || 0;
         this.projectStats.Working = response.Working || 0;
         this.projectStats.total = response.Working + response.completed || 0;
-        // this.userCounts.freelancers = response.freelancers || 0;
-        // this.userCounts.admins = response.admins || 0;
         this.cdr.detectChanges();
       }));
   }
@@ -272,12 +267,12 @@ export class UserDashboradComponent implements OnInit {
 
         this.total = fixedProjects.length + biddingProjects.length;
 
-        // this.projectStats = {
-        //   total: this.total,
-        //   pending,
-        //   completed,
-        //   Working
-        // };
+        this.projectStats = {
+          total: this.total,
+          pending,
+          completed,
+          Working
+        };
 
         this.projectStatusChartData = {
           ...this.projectStatusChartData,
@@ -293,7 +288,7 @@ export class UserDashboradComponent implements OnInit {
         console.error('Error combining project statistics:', error);
         this.hasError.projects = true;
         this.toastr.error('Failed to load project statistics');
-        // this.projectStats = { total: 0, pending: 0, completed: 0 ,Working :0};
+        this.projectStats = { total: 0, pending: 0, completed: 0 ,Working :0};
         this.projectStatusChartData = {
           ...this.projectStatusChartData,
           datasets: [{ ...this.projectStatusChartData.datasets[0], data: [0, 0] }]
@@ -336,7 +331,7 @@ export class UserDashboradComponent implements OnInit {
   private loadCertificateStatistics(): Observable<void> {
     this.isLoading.certificates = true;
     this.hasError.certificates = false;
-    return this.certificateService.getAllCertificates().pipe(
+    return this.certificateService.getfreelancerCertificate().pipe(
       map((certificates: Certificate[]) => {
         this.pendingCertificates = certificates.length;
         this.cdr.detectChanges();
@@ -350,83 +345,6 @@ export class UserDashboradComponent implements OnInit {
       }),
       map(() => {
         this.isLoading.certificates = false;
-      })
-    );
-  }
-
-  private loadTopSkills(): Observable<void> {
-    this.isLoading.skills = true;
-    this.hasError.skills = false;
-    return this.skillService.getUserSkillsForAdmin().pipe(
-      map((skills: UserSkill[]) => {
-        const skillCounts = new Map<string, number>();
-        skills.forEach(skill => {
-          const count = skillCounts.get(skill.skillName??"") || 0;
-          skillCounts.set(skill.skillName??"", count + 1);
-        });
-//changed
-        this.topSkills = Array.from(skillCounts.entries())
-          .map(([name, count]) => ({ name, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 5);
-        this.cdr.detectChanges();
-      }),
-      catchError(error => {
-        console.error('Error fetching skills:', error);
-        this.hasError.skills = true;
-        this.toastr.error('Failed to load top skills');
-        this.topSkills = [];
-        return of(void 0);
-      }),
-      map(() => {
-        this.isLoading.skills = false;
-      })
-    );
-  }
-
-  private loadLanguageDistribution(): Observable<void> {
-    this.isLoading.languages = true;
-    this.hasError.languages = false;
-    return this.languageService.getAllFreelancerLanguages().pipe(
-      map((languages: FreelancerLanguage[]) => {
-        console.log('Languages Response:', languages);
-        const languageCounts = new Map<string, number>();
-        languages.forEach(lang => {
-          if (!lang.isDeleted) {
-            const count = languageCounts.get(lang.language) || 0;
-            languageCounts.set(lang.language, count + 1);
-          }
-        });
-
-        this.languageDistribution = Array.from(languageCounts.entries())
-          .map(([language, count]) => ({ language, count }));
-
-        this.languageChartData = {
-          ...this.languageChartData,
-          labels: this.languageDistribution.map(l => l.language),
-          datasets: [{
-            ...this.languageChartData.datasets[0],
-            data: this.languageDistribution.map(l => l.count)
-          }]
-        };
-
-        this.cdr.detectChanges();
-      }),
-      catchError(error => {
-        console.error('Error fetching languages:', error);
-        this.hasError.languages = true;
-        this.toastr.error('Failed to load language distribution');
-        this.languageDistribution = [];
-        this.languageChartData = {
-          ...this.languageChartData,
-          labels: [],
-          datasets: [{ ...this.languageChartData.datasets[0], data: [] }]
-        };
-        this.cdr.detectChanges();
-        return of(void 0);
-      }),
-      map(() => {
-        this.isLoading.languages = false;
       })
     );
   }
