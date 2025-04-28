@@ -11,6 +11,7 @@ export interface Milestone {
     id: number;
     title: string;
     description: string;
+    price: number;
     currency: string;
     expectedDuration: number;
     subcategoryID: number;
@@ -24,6 +25,7 @@ export interface Milestone {
     id: number
     title: string
     description: string
+    price: number
     currency: string
     expectedDuration: number
     subcategoryID: number
