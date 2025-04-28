@@ -13,7 +13,7 @@
                 <div class="profile-image-wrapper">
                     <div class="profile-image">
                         <img [src]="picturesurl +`/`+ profile.profilePicture" *ngIf="profile.profilePicture" alt="Profile Picture">
-                        <img src="assets/default-avatar.png" *ngIf="!profile.profilePicture" alt="Default Profile">
+                        <img src="/images/default.jpg" *ngIf="!profile.profilePicture" alt="Default Profile">
                     </div>
                     <div class="verification-badge" *ngIf="profile.isVerified">
                         <i class="fas fa-check-circle"></i>
@@ -155,6 +155,48 @@
                             <span><i class="fas fa-money-bill-wave"></i> {{project.minimumPrice}} - {{project.maximumprice}} {{project.currency}}</span>
                             <span><i class="far fa-clock"></i> {{project.expectedDuration}} days</span>
                             <span><i class="fas fa-layer-group"></i> {{project.experienceLevel}}</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="reviews-section card" *ngIf="reviews?.length">
+                    <div class="section-header">
+                        <i class="fas fa-star"></i>
+                        <h2>Client Reviews</h2>
+                    </div>
+                    
+                    <div class="reviews-container">
+                        <div class="review-card" *ngFor="let review of reviews">
+                            <div class="review-header">
+                                <div class="project-link">
+                                    <a [routerLink]="['/home2/details', review.projectId]">
+                                        <i class="fas fa-project-diagram"></i>
+                                        {{review.projectTitle}}
+                                    </a>
+                                    <span class="project-type">{{review.projectType}}</span>
+                                </div>
+                                <div class="review-rating">
+                                    <span class="stars">
+                                        <i class="fas fa-star" *ngFor="let star of [].constructor(review.rating)"></i>
+                                        <i class="far fa-star" *ngFor="let star of [].constructor(5 - review.rating)"></i>
+                                    </span>
+                                    <span class="rating-value">{{review.rating}}/5</span>
+                                </div>
+                            </div>
+                            
+                            <div class="review-content">
+                                <p class="review-comment">{{review.comment || 'No comment provided'}}</p>
+                            </div>
+                            
+                            <div class="review-footer">
+                                <span class="reviewer">
+                                    <i class="fas fa-user"></i> {{review.reviewerName}}
+                                </span>
+                                <span class="review-date">
+                                    <i class="far fa-calendar-alt"></i> {{review.date | date:'mediumDate'}}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -81,6 +81,8 @@ import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
 import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
+import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
+import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
 
 
 
@@ -93,7 +95,7 @@ export const routes: Routes = [
     {path:'Projects',component:MyProjectsComponent,title:'MyProjects'},
     {path: 'milestones/:projectId',component: MilestonesComponent},
     {path: 'proposaldetails/:projectId',component: ProposalDetailsComponent,title:'ProposalDetails'},
-
+    {path: 'VerificationRequests',component: IdentityVerificationDeicisionComponent},
 
     {path:'register', loadComponent: () => import('./Layout/Pages/register/register.component').then(m => m.RegisterComponent)},
     {
@@ -122,7 +124,11 @@ export const routes: Routes = [
           {path: 'test',component: TestComponent},
           {path: 'new',component: BiddingProjectNewComponent},
           {path: 'details/:id',component: BiddingProjectDetailsComponent},
-          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent}
+          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent},
+          {path: 'Freelancers',component: FreelancersComponent}
+
+          // {path: 'VerificationRequests',component: IdentityVerificationDeicisionComponent}
+
         ]
       },
    

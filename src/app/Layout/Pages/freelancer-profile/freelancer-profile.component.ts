@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AccountService } from '../../../Shared/Services/Account/account.service';
 import { AuthService } from '../../../Shared/Services/Auth/auth.service';
 import { CountriesService } from '../../../Shared/Services/Countries/countries.service';
@@ -26,10 +26,12 @@ import { Education } from '../../../Shared/Interfaces/education';
 import { Experience } from '../../../Shared/Interfaces/experience';
 import { freelancerportofolioproject, freelancerportofolioprojects } from '../../../Shared/Interfaces/PortfolioProject';
 import { Certificate } from '../../../Shared/Interfaces/certificate';
+import { ReviewService } from '../../../Shared/Services/Review/review.service';
+import { GetReviewsByRevieweeIdDto } from '../../../Shared/Interfaces/get-reviews-by-reviewee-id-dto';
 
 @Component({
   selector: 'app-freelancer-profile',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './freelancer-profile.component.html',
   styleUrl: './freelancer-profile.component.css'
 })
@@ -37,20 +39,21 @@ export class FreelancerProfileComponent implements OnInit  {
 constructor(
   private route: ActivatedRoute
     ,private router: Router
+    ,private fb: FormBuilder
+    ,private toastr: ToastrService
     ,private account:AccountService
     ,private authservice:AuthService
     ,private Countryservice:CountriesService
     ,private CityService:CitiesService
     ,private SkillService:SkillService
-    ,private fb: FormBuilder
     ,private educationservice:EducationService
-    ,private toastr: ToastrService
     ,private experienceservice:ExperienceService
     ,private portfolioprojectservice:PortfolioProjectService
     ,private Portfolioprojectimageservice:PortfolioImageService
     ,private certificatservice:CertificateService
     ,private BiddingProjects:BiddingProjectService
     ,private fixedprojects:FixedPriceProjectService
+    ,private reviewservice:ReviewService
 ){
 
 }
@@ -131,7 +134,8 @@ nonrecommendedskills:nonrecommendedSkill[]=[]
           this.loadExperience(),
           this.loadPortofolioProjects(),
           this.loadCertificates(),
-          this.loadBiddingProjects()
+          this.loadBiddingProjects(),
+          this.loadReviews()
         ]).catch(error => {
           console.error('Error loading profile data:', error);
         });
@@ -332,5 +336,19 @@ loadBiddingProjects(){
   )
   
 }
-
+reviews:GetReviewsByRevieweeIdDto[]=[];
+loadReviews()
+{
+  this.reviewservice.getRevieweeById(this.profile.id).subscribe(
+    {
+      next:(data:GetReviewsByRevieweeIdDto[])=>{
+        this.reviews=data;
+      },
+      error:(err)=>{
+        this.error=err;
+        this.toastr.error("failed to load reviews");
+      }
+    }
+  )
+}
 }
