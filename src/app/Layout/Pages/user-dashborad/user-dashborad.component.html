@@ -358,40 +358,18 @@
   <!-- Charts Row -->
   <div class="row mb-4">
     <!-- Revenue Chart -->
-    <div class="col-lg-6 mb-4">
+    <div class="col-lg-9 mb-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title">Top 5 Freelancer Skills</h5>
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Skill</th>
-                  <th>Usage Count</th>
-                  <th>Progress</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let skill of topSkills">
-                  <td>{{ skill.name }}</td>
-                  <td>{{ skill.count }}</td>
-                  <td>
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        [style.width.%]="
-                          (skill.count / topSkills[0].count) * 100
-                        "
-                        [attr.aria-valuenow]="skill.count"
-                        aria-valuemin="0"
-                        [attr.aria-valuemax]="topSkills[0].count"
-                      ></div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <h5 class="card-title">Monthly Revenue</h5>
+          <div class="chart-container">
+            <canvas
+              baseChart
+              [data]="revenueChartData"
+              [options]="lineChartOptions"
+              type="line"
+            >
+            </canvas>
           </div>
         </div>
       </div>
@@ -413,7 +391,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 mb-4">
+    <!-- <div class="col-lg-3 mb-4">
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Language Distribution</h5>
@@ -428,30 +406,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
-
   <!-- Bottom Row -->
-  <div class="row mx-auto">
-    <!-- Top Skills -->
-
-    <div class="offset-lg-2 col-lg-8 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Monthly Revenue</h5>
-          <div class="chart-container">
-            <canvas
-              baseChart
-              [data]="revenueChartData"
-              [options]="lineChartOptions"
-              type="line"
-            >
-            </canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Language Distribution -->
-  </div>
 </div>
