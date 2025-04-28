@@ -1,5 +1,4 @@
 import './polyfills';
-import '@angular/localize/init';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';

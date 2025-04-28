@@ -120,8 +120,9 @@ export const routes: Routes = [
           {path: 'dashboard', component: UserDashboradComponent},
           {path: 'test',component: TestComponent},
           {path: 'new',component: BiddingProjectNewComponent},
-          {path: 'details/:id',component: BiddingProjectDetailsComponent}
-
+          {path: 'details/:id',component: BiddingProjectDetailsComponent},
+          {path:'allusers',loadComponent: () => import('./Layout/Pages/AllUsers/allusers.component').then(m => m.AllusersComponent)},
+          {path :'addAdmin',loadComponent: () => import('./Layout/Pages/add-admin/add-admin.component').then(m => m.AddAdminComponent)},
         ]
       },
    

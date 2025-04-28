@@ -4,6 +4,9 @@ import { Environment } from '../../../base/environment';
 import { AppUser, AppUsers, ClientsFilter, ClientsView, ClientView, CreateAdminDTO, EditProfileDTO, FilteredClients, FilteredFreelancers, ForgotPasswordDTO, Freelancers, FreelancersFilter, FreelancerView, IdentityVerificationRequest, LoginDTO, RefreshTokenDTO, RegisterDTO, ResetPasswordDTO, SingularFreelancer, Tokens, UserRole, UsersRequestingVerificaiton, VerificationDecision } from '../../Interfaces/Account';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+interface CreateAdminResponse {
+  message: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -159,51 +162,17 @@ return this._HttpClient.put<string>(`${this.apiUrl}/EditProfile`, formData);
 return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2);
     }
   
-
-    MakeAdmin(userId:string):Observable<string>{
-      return this._HttpClient.post<string>(`${this.apiUrl}/MakeAdmin`,JSON.stringify(userId), 
-      {
-          headers: new HttpHeaders({
-              'Content-Type': 'application/json'
-          })
-      });
-
+    MakeAdmin(userId: string): Observable<string> {
+      return this._HttpClient.post<string>(`${this.apiUrl}/MakeAdmin`,{ UserId: userId });
     }
-    RemoveAdmin(userId:string):Observable<string>{
-      return this._HttpClient.post<string>(`${this.apiUrl}/RemoveAdmin`,JSON.stringify(userId), 
-      {
-          headers: new HttpHeaders({
-              'Content-Type': 'application/json'
-          })
-      });
-
+    RemoveAdmin(userId: string): Observable<any> {
+      return this._HttpClient.post(`${this.apiUrl}/RemoveAdmin`, { UserId: userId });
     }
 
-    CreateAdminAccount(AdminData:CreateAdminDTO):Observable<string>{
-      const formData = new FormData();
-    
-    formData.append('firstname', AdminData.firstname);
-    formData.append('lastname', AdminData.lastname);
-    formData.append('cityId', AdminData.cityId.toString());
-    formData.append('userName', AdminData.userName);
-    formData.append('email', AdminData.email);
-    formData.append('phoneNumber', AdminData.phoneNumber);
-    formData.append('password', AdminData.password);
-    
-    if (AdminData.confirmPassword) {
-        formData.append('confirmPassword', AdminData.confirmPassword);
-    }
-    
-    // Handle DateOnly format
-    formData.append('dateOfBirth', AdminData.dateOfBirth);
-    
-    if (AdminData.profilePicture) {
-        formData.append('profilePicture', AdminData.profilePicture);
-    }
-
-    return this._HttpClient.post<string>(`${this.apiUrl}/CreateAdminAccount`, formData);
-
-    }
+    CreateAdminAccount(AdminData: FormData): Observable<CreateAdminResponse> {
+      return this._HttpClient.post<CreateAdminResponse>(`${this.apiUrl}/CreateAdminAccount`, AdminData);
+  }
+  
 
 
     Register(formData: FormData): Observable<any> {

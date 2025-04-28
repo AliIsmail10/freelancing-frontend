@@ -21,19 +21,18 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-            "src/favicon.ico",
-           "src/assets/js/main.js",
+      
             {
-              "glob": "/*",
+              "glob": "**/*",
               "input": "public"
             },
             {
-              "glob": "/*",
+              "glob": "**/*",
               "input": "node_modules/@fortawesome/fontawesome-free/webfonts",
               "output": "/webfonts"
             },
             {
-              "glob": "/*",
+              "glob": "**/*",
               "input": "node_modules/linearicons/dist/web-font/fonts",
               "output": "/fonts"
             }
@@ -59,9 +58,9 @@
               "src/styles.css"
             ],
             "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
           "node_modules/jquery/dist/jquery.min.js", 
           "src/assets/js/jquery-library.js",
-          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
           "node_modules/owl.carousel/dist/owl.carousel.min.js",
            "src/assets/js/jquery.sortable.js",   
           "node_modules/chosen-js/chosen.jquery.min.js",
@@ -71,8 +70,6 @@
            "src/assets/js/prettyPhoto.js",
           "node_modules/jquery-ui-dist/jquery-ui.min.js",
           "node_modules/readmore-js/readmore.min.js",
-
-
           "node_modules/modernizr/src/modernizr.js",
           "node_modules/jquery-countto/jquery.countTo.js",
           "node_modules/jquery-appear-original/index.js",
