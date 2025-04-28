@@ -41,6 +41,12 @@ navigatetodetails(id:number) {
 Update(id:number){
   this.router.navigateByUrl(`/home2/updateban/${id}`)
 }
-
+getDateDiff(dateString: string): number {
+  const banEndDate = new Date(dateString);
+  const now = new Date();
+  const diffMilliseconds = now.getTime() - banEndDate.getTime();
+  const diffDays = Math.floor(diffMilliseconds / (1000 * 60 ));
+  return diffDays;
+}
 
 }

@@ -43,12 +43,15 @@
                           <td>{{ban.bannedUserName}}</td>
                           <td>{{ban.banDate | date}}</td>
                           <td>{{ban.banEndDate| date}} </td>
-                          <!-- @if(date < ban.banEndDate){
+
+						  <!-- <td>{{ getDateDiff(ban.banEndDate) }} days ago</td> -->
+
+                          @if(getDateDiff(ban.banEndDate)<0){
                             <td><span class="wt-draft">Active</span></td>
                           }@else{
                             <td><span class="wt-pending">Expired</span></td>
-                          } -->
-                            <td></td>
+                          }
+                            
                           <td>
                             <div class="wt-actionbtn">
 							                <a href="javascript:void(0);" *ngIf="ban.id !== undefined"

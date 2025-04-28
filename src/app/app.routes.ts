@@ -84,6 +84,11 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
+import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
+import { ProposalComponent } from './Components/proposal/proposal.component';
+import { Proposal2Component } from './Components/proposal2/proposal2.component';
+import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
+import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
 
 
 
