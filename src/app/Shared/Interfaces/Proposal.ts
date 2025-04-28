@@ -38,6 +38,7 @@ export interface CreateProposalDTO {
     amount: number
     duration: number
   }
+  
   export interface UpdateProposalSuggestedMilestoneDTO {
     title: string
     description: string

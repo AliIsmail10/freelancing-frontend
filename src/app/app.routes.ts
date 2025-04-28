@@ -84,10 +84,8 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
-import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
 import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
-import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
-import { ProposalComponent } from './Layout/Pages/Proposal/proposal/proposal.component';
+import { ProposalComponent } from './Components/proposal/proposal.component';
 
 
 
@@ -127,7 +125,7 @@ export const routes: Routes = [
   
 
 
-   , 
+  ,
 
     {path:'milestone',component:MilestonesComponent,title:'milestone'},
     {path:'myprojects',component:MyProjectsComponent,title:'MyProjects'},
@@ -163,11 +161,7 @@ export const routes: Routes = [
           {path: 'dashboard', component: UserDashboradComponent},
           {path: 'test',component: TestComponent},
           {path: 'new',component: BiddingProjectNewComponent},
-          {path: 'details/:id',component: BiddingProjectDetailsComponent},
-          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent},
-          {path: 'Freelancers',component: FreelancersComponent}
-
-          // {path: 'VerificationRequests',component: IdentityVerificationDeicisionComponent}
+          {path: 'details/:id',component: BiddingProjectDetailsComponent}
 
         ]
       },

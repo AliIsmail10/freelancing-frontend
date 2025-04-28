@@ -1,12 +1,12 @@
 <div class="upwork-job-container py-4">
     <div class="container">
       <!-- Notification Banner -->
-      <div class="upwork-banner  mb-4">
+      <!-- <div class="upwork-banner  mb-4">
         <span>
           Starting May 1, 2025, Freelancer Service Fees for new contracts will switch from a fixed to a variable fee based on factors such as client demand for certain work. The fee will remain fixed for the life of the contract.
           <a href="#">Learn more.</a>
         </span>
-      </div>
+      </div> -->
   
 
       <div class="row gx-4 gy-4">
@@ -139,7 +139,8 @@
         <!-- Sidebar -->
         <div class="col-lg-4 col-md-12">
           <aside class="upwork-sidebar mb-4">
-            <button class="apply-btn mb-2">Apply now</button>
+            <a [routerLink]="['/home2/proposal2',project.id]"><button class="apply-btn mb-2">Apply now</button></a>
+            
             <button class="save-btn mb-2">Save job</button>
       
   
@@ -212,7 +213,7 @@
 
     
      <!-- Client's recent history -->
-     <div class="row">
+     <!-- <div class="row">
        <div class="col-lg-12">
          <section>
            <h3 class="section-title">Client's Reviews </h3>
@@ -224,18 +225,110 @@
                <span class="history-details">{{review.date|date:'mediumDate'}}</span>
              </li>
              
-            
-            
-
-             <li><a href="#">View more (50)</a></li>
            </ul>
          </section>
        </div>
-     </div>
+     </div> -->
+
+
+     <!-- ... existing code ... -->
+
+<div class="row pb-4">
+  <div class="col-lg-12">
+    <section>
+      <h3 class="section-title mb-4">Client's Reviews</h3>
+      <div id="clientReviewsCarousel" class="carousel slide" data-bs-ride="carousel" *ngIf="clientReviews.length > 0">
+        <div class="carousel-inner">
+          <div
+            class="carousel-item"
+            *ngFor="let review of clientReviews; let i = index"
+            [class.active]="i === 0"
+          >
+            <!-- <div class="card review-card mx-auto">
+              <div class="card-body">
+                <div class="history-title fw-bold me-2 ">{{ review.projectTitle }}</div>
+                <div class="d-flex align-items-center mb-2">
+                  <span class="history-rating ms-auto text-warning">
+                    <ng-container *ngFor="let star of [1,2,3,4,5]; let idx = index">
+                      <i
+                        class="fa-star"
+                        [ngClass]="{
+                          'fa': true,
+                          'fa-solid': review.rating >= star,
+                          'fa-regular': review.rating < star
+                        }"
+                      ></i>
+                    </ng-container>
+                    <span class="rating-number ms-1">{{ review.rating }}/5</span>
+                  </span>
+                </div>
+                <p class="mb-2 fst-italic text-secondary">
+                  {{ review.comment !== null ? review.comment : 'No comment' }}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a [routerLink]="['/home2/details', review.projectId]" class="btn btn-outline-success btn-sm">View Project</a>
+                  <span class="history-details small text-muted">{{ review.date | date: 'mediumDate' }}</span>
+                </div>
+              </div>
+            </div> -->
+
+           
+<div class="card review-card mx-auto">
+  <div class="card-body">
+    <a [routerLink]="['/home2/details', review.projectId]" class="history-title fw-bold me-2 text-success text-decoration-underline">
+      {{ review.projectTitle }} 
+    </a>
+    <div class="d-flex align-items-center mb-2">
+      <!-- <span >
+        By: {{ review.reviewerName }}
+      </span> -->
+      <span class="history-rating ms-auto text-warning">
+        <ng-container *ngFor="let star of [1,2,3,4,5]; let idx = index">
+          <i
+            class="fa-star"
+            [ngClass]="{
+              'fa': true,
+              'fa-solid': review.rating >= star,
+              'fa-regular': review.rating < star
+            }"
+          ></i>
+        </ng-container>
+        <span class="rating-number ms-1">{{ review.rating }}/5</span>
+      </span>
+    </div>
+    <p class="mb-2 fst-italic text-secondary">
+      {{ review.comment !== null ? review.comment : 'No comment' }}
+    </p>
+    <div class="d-flex justify-content-between align-items-center">
+      <!-- Removed View Project button -->
+      <span></span>
+      <span class="history-details small text-muted">{{ review.date | date: 'mediumDate' }}</span>
+    </div>
+  </div>
+</div>
+
+
+            
+          </div>
+        </div>
+        <!-- Carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#clientReviewsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#clientReviewsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+      <div *ngIf="clientReviews.length === 0" class="text-muted">No reviews yet.</div>
+    </section>
+  </div>
+</div>
+
+<!-- ... existing code ... -->
 
      
      <!-- Other open jobs -->
-     <div class="row">
+     <div class="row mt-5" style="border-top: 1px solid #efefef;">
        <div class="col-lg-12">
          <section>
            <h3 class="section-title">Other open jobs by this Client</h3>

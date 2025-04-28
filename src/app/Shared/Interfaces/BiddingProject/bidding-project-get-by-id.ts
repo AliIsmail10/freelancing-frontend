@@ -24,4 +24,6 @@ export interface BiddingProjectGetById {
   numOfBids:number
   clientProjectsTotalCount:number
   clientId:string
+  expectedDuration:number
+  endDate:string
 }
