@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ProposalService } from '../../../../Shared/Services/Proposal/proposal.service';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProposalView, SuggestedMilestone } from '../../../../Shared/Interfaces/Proposal';
 import { MilestoneService } from '../../../../Shared/Services/Milestone/milestone.service';
-import { MilestoneDto } from '../../../../Shared/Interfaces/createfixedproject';
 
 @Component({
   selector: 'app-proposal-details',
-  imports: [RouterLink,CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './proposal-details.component.html',
   styleUrl: './proposal-details.component.css'
 })

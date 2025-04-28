@@ -13,7 +13,7 @@ import { FixedPriceProjectService } from '../../Shared/Services/FixedPriceProjec
 
 @Component({
   selector: 'app-bidding-project-details',
-  imports: [RouterModule,RouterOutlet, TimeAgoPipe, FormsModule, CommonModule, TimeLeftPipe],
+  imports: [RouterModule, TimeAgoPipe, FormsModule, CommonModule, TimeLeftPipe],
   templateUrl: './bidding-project-details.component.html',
   styleUrl: './bidding-project-details.component.css'
 })

@@ -84,11 +84,19 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
+
 import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
 import { ProposalComponent } from './Components/proposal/proposal.component';
 import { Proposal2Component } from './Components/proposal2/proposal2.component';
 import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
 import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
+
+import { ProposalComponent } from './Components/proposal/proposal.component';
+import { Proposal2Component } from './Components/proposal2/proposal2.component';
+import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
+import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
+import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
+
 
 
 
@@ -165,6 +173,8 @@ export const routes: Routes = [
           {path: 'test',component: TestComponent},
           {path: 'new',component: BiddingProjectNewComponent},
           {path: 'details/:id',component: BiddingProjectDetailsComponent},
+          {path:'allusers',loadComponent: () => import('./Layout/Pages/AllUsers/allusers.component').then(m => m.AllusersComponent)},
+          {path :'addAdmin',loadComponent: () => import('./Layout/Pages/add-admin/add-admin.component').then(m => m.AddAdminComponent)},
           {path: 'proposal2/:id',component: Proposal2Component},
           {path: 'Freelancers',component: FreelancersComponent},
           {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent}
