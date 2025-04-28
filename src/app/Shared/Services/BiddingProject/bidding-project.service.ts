@@ -80,7 +80,11 @@ export class BiddingProjectService {
    GetmyBiddingprojects(): Observable<BiddingProjectGetAll[]>{
     return this.httpClinet.get<BiddingProjectGetAll[]>(`${this.Url}/GetMyBiddingProjects`);
    }
-
+   //------------------------------------------------------------------------------------
+   GetuserBiddingprojects(userid:string): Observable<BiddingProjectGetAll[]>{
+    return this.httpClinet.get<BiddingProjectGetAll[]>(`${this.Url}/GetForUser/${userid}`);
+   }
+   //------------------------------------------------------------------------------------
    GetAllBiddingProjectsDashBoard(filter: BiddingProjectFilter, PageNumber: number, PageSize: number): Observable<BiddingProjectsResponse> {
     let params = new HttpParams()
       .set('PageNumber', PageNumber.toString())

@@ -1,3 +1,4 @@
+
 <div class="profile-container">
     <!-- Profile Header -->
     <div class="profile-header">
@@ -5,7 +6,7 @@
             <div class="row align-items-center">
                 <div class="col-auto">
                     <div class="profile-picture-container">
-                        <img [src]="previewUrl || `${picturesurl}/${profile.profilePicture}` || '/assets/images/default.jpg'" 
+                        <img [src]="profile.profilePicture? previewUrl || `${picturesurl}/${profile.profilePicture}` : '/images/default.jpg'" 
                              alt="Profile Picture" 
                              class="profile-image">
                         <div class="overlay">

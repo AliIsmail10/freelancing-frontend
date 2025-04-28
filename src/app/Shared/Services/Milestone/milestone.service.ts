@@ -63,8 +63,8 @@ export class MilestoneService {
   }
 
 
-  GetFilesByMilestoneId(MilsestoneId:number):Observable<MilestoneFile>{
-    return this.httpclient.get<MilestoneFile>(`${this.url}/GetFilesByMilestoneId/${MilsestoneId}`)
+  GetFilesByMilestoneId(MilsestoneId:number):Observable<MilestoneFile[]>{
+    return this.httpclient.get<MilestoneFile[]>(`${this.url}/GetFilesByMilestoneId/${MilsestoneId}`)
   }
 
 }

@@ -104,7 +104,7 @@ export class AccountService {
       formData.append('fullName', request.fullName);
       formData.append('nationalId', request.nationalId);
       formData.append('idPicture', request.idPicture);
-      
+
       return this._HttpClient.post<string>(`${this.apiUrl}/RequestIdentityVerification`, formData);
   }
     VerifyIdentity(decision:VerificationDecision):Observable<string>{
@@ -158,10 +158,10 @@ formData2.append('Test', 'hello');
 return this._HttpClient.put<string>(`${this.apiUrl}/EditProfile`, formData);
 return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2);
     }
-  
+
 
     MakeAdmin(userId:string):Observable<string>{
-      return this._HttpClient.post<string>(`${this.apiUrl}/MakeAdmin`,JSON.stringify(userId), 
+      return this._HttpClient.post<string>(`${this.apiUrl}/MakeAdmin`,JSON.stringify(userId),
       {
           headers: new HttpHeaders({
               'Content-Type': 'application/json'
@@ -170,7 +170,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
 
     }
     RemoveAdmin(userId:string):Observable<string>{
-      return this._HttpClient.post<string>(`${this.apiUrl}/RemoveAdmin`,JSON.stringify(userId), 
+      return this._HttpClient.post<string>(`${this.apiUrl}/RemoveAdmin`,JSON.stringify(userId),
       {
           headers: new HttpHeaders({
               'Content-Type': 'application/json'
@@ -181,7 +181,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
 
     CreateAdminAccount(AdminData:CreateAdminDTO):Observable<string>{
       const formData = new FormData();
-    
+
     formData.append('firstname', AdminData.firstname);
     formData.append('lastname', AdminData.lastname);
     formData.append('cityId', AdminData.cityId.toString());
@@ -189,14 +189,14 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
     formData.append('email', AdminData.email);
     formData.append('phoneNumber', AdminData.phoneNumber);
     formData.append('password', AdminData.password);
-    
+
     if (AdminData.confirmPassword) {
         formData.append('confirmPassword', AdminData.confirmPassword);
     }
-    
+
     // Handle DateOnly format
     formData.append('dateOfBirth', AdminData.dateOfBirth);
-    
+
     if (AdminData.profilePicture) {
         formData.append('profilePicture', AdminData.profilePicture);
     }
@@ -209,7 +209,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
     Register(formData: FormData): Observable<any> {
       return this._HttpClient.post<any>(`${this.apiUrl}/Register`, formData);
     }
-    
+
 
 
   Login(dto:LoginDTO):Observable<Tokens>{
@@ -220,7 +220,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
     return this._HttpClient.post<Tokens>(`${this.apiUrl}/Refresh-Token`,dto);
   }
 
-  
+
   ForgotPassword(dto: ForgotPasswordDTO, reseturl: string): Observable<string> {
     return this._HttpClient.post<string>(
       `${this.apiUrl}/ForgotPassword?reseturl=${reseturl}`,
@@ -238,7 +238,7 @@ return this._HttpClient.post<string>(`${this.apiUrl}/Testingformdata`, formData2
       params: new HttpParams().set('emailToBeCONFIRMED', email)
     });
   }
-  
+
 
 ExternalLogin(provider: string, role?: UserRole, returnUrl?: string, errorUrl?: string): Observable<any> {
   let params = new HttpParams()
@@ -264,7 +264,7 @@ private toastr=inject(ToastrService);
 checkExternalLogin(): void {
   const url = new URL(window.location.href);
   const error = url.searchParams.get('error');
-  
+
   if (error) {
     this.toastr.error(error);
     // Clean the URL
@@ -273,10 +273,11 @@ checkExternalLogin(): void {
 }
 
 
+
 }
 
     // getProfile(): Observable<EditProfileDTO> {
     //   return this.http.get<EditProfileDTO>(`${this.apiUrl}`);
     // }
-    
-  
+
+

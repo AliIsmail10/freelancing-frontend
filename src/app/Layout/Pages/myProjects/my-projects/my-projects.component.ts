@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from '../../../../Shared/Services/Projects/projects.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Project } from '../../../../Shared/Interfaces/AllProjects';
 
 @Component({
   selector: 'app-my-projects',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class MyProjectsComponent implements OnInit {
 
    constructor(private ProjectService:ProjectsService,private router: Router){}
-   projects:any[] = []; 
+   projects:Project[] = []; 
    projectId:number = 0;
 
    loadProjects() {
@@ -30,7 +31,6 @@ export class MyProjectsComponent implements OnInit {
     this.loadProjects();
    }
    getprojectById(projectId: number) {
-    // Navigate to the milestones route with the projectId
     this.router.navigate(['/milestones', projectId]);
   }
    }
