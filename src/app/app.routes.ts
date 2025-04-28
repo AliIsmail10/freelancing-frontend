@@ -80,6 +80,7 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
+import { ProposalComponent } from './Layout/Pages/Proposal/proposal/proposal.component';
 
 
 
@@ -92,6 +93,7 @@ export const routes: Routes = [
     {path:'myprojects',component:MyProjectsComponent,title:'MyProjects'},
     {path: 'milestones/:projectId',component: MilestonesComponent},
     {path: 'proposaldetails/:projectId',component: ProposalDetailsComponent,title:'ProposalDetails'},
+    {path: 'proposals/:projectId',component: ProposalComponent,title:'proposals'},
 
 
     {path:'register', loadComponent: () => import('./Layout/Pages/register/register.component').then(m => m.RegisterComponent)},
