@@ -336,7 +336,7 @@ export class UserDashboradComponent implements OnInit {
   private loadCertificateStatistics(): Observable<void> {
     this.isLoading.certificates = true;
     this.hasError.certificates = false;
-    return this.certificateService.getAllCertificates().pipe(
+    return this.certificateService.getfreelancerCertificate().pipe(
       map((certificates: Certificate[]) => {
         this.pendingCertificates = certificates.length;
         this.cdr.detectChanges();
