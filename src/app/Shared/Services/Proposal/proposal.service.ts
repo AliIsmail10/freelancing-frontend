@@ -25,6 +25,9 @@ export class ProposalService {
   Getbyfreelancerid(freelancername:string):Observable<ProposalsView>{
   return this._HttpClient.get<ProposalsView>(`${this.apiUrl}/getbyfreelancerId/${freelancername}`);
   }
+ Getproposalbyfreelancerid():Observable<ProposalsView>{
+  return this._HttpClient.get<ProposalsView>(`${this.apiUrl}/getbyfreelancerId`);
+  }
   CreateProposal(dto:CreateProposalDTO):Observable<ProposalView>{
   return this._HttpClient.post<ProposalView>(`${this.apiUrl}`,dto);
   }
