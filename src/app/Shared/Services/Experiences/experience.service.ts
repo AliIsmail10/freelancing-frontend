@@ -36,10 +36,10 @@ export class ExperienceService {
 
   // Get all experiences for a specific user by userId dy zyada lw 7bena ndef function f el service f el backend w b3den ndefha hna
   getExperienceByUserId(userId: string): Observable<Experience[]> {
-    return this._HttpClient.get<Experience[]>(`${this.apiUrl}Experiences/active/${userId}`);
+    return this._HttpClient.get<Experience[]>(`${this.apiUrl}Experiences/freelancer/${userId}`);
   }
 
-  getExperienceByUseName(username: string): Observable<Experience[]> {
-    return this._HttpClient.get<Experience[]>(`${this.apiUrl}Experiences/user/${username}`);
+  getExperienceByUserName(username: string): Observable<Experience[]> {
+    return this._HttpClient.get<Experience[]>(`${this.apiUrl}Experiences/freelancer/${username}`);
   }
 }

@@ -1,0 +1,262 @@
+
+
+  <div class="container d-flex gap-3 pt-5">
+    <div class="sidebar">
+        <!-- Category -->
+        <div class="filter-group">
+            <div class="filter-header" (click)="toggleFilter('category')">
+              <span>Category</span>
+              <span class="arrow" [class.open]="filtersOpen['category']">&#9660;</span>
+            </div>
+            <div class="filter-content" *ngIf="filtersOpen['category']">
+              <select>
+                <option>Select Categories</option>
+                <option *ngFor="let cat of categories">{{ cat }}</option>
+              </select>
+            </div>
+          </div>
+      
+        <!-- Experience level -->
+        <div class="filter-group">
+          <div class="filter-header" (click)="toggleFilter('experience')">
+            <span>Experience level</span>
+            <span class="arrow" [class.open]="filtersOpen['experience']">&#9660;</span>
+          </div>
+          <div class="filter-content" *ngIf="filtersOpen['experience']">
+            <div *ngFor="let exp of experienceLevels">
+              <label>
+                <input type="checkbox" />
+                {{ exp.label }} <span class="count">({{ exp.count }})</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Job type -->
+        <div class="filter-group">
+          <div class="filter-header" (click)="toggleFilter('jobType')">
+            <span>Job type</span>
+            <span class="arrow" [class.open]="filtersOpen['jobType']">&#9660;</span>
+          </div>
+          <div class="filter-content" *ngIf="filtersOpen['jobType']">
+            <div>
+              <label>
+                <input type="checkbox" />
+                Hourly <span class="count">(45)</span>
+              </label>
+              <div class="input-row">
+                <input type="number" placeholder="Min" class="input-small" /> /hr
+                <input type="number" placeholder="Max" class="input-small" /> /hr
+              </div>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" />
+                Fixed-Price <span class="count">(37)</span>
+              </label>
+              <div *ngFor="let range of fixedPriceRanges">
+                <label>
+                  <input type="checkbox" />
+                  {{ range.label }} <span class="count">({{ range.count }})</span>
+                </label>
+              </div>
+              <div class="input-row">
+                <input type="number" placeholder="Min" class="input-small" />
+                <input type="number" placeholder="Max" class="input-small" />
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Number of proposals -->
+        <div class="filter-group">
+          <div class="filter-header" (click)="toggleFilter('proposals')">
+            <span>Number of proposals</span>
+            <span class="arrow" [class.open]="filtersOpen['proposals']">&#9660;</span>
+          </div>
+          <div class="filter-content" *ngIf="filtersOpen['proposals']">
+            <div *ngFor="let prop of proposals; let i = index">
+              <label>
+                <input type="checkbox" [checked]="isProposalChecked(i)" (change)="toggleProposal(i)" />
+                {{ prop.label }} <span class="count">({{ prop.count }})</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Client info -->
+        <div class="filter-group">
+          <div class="filter-header" (click)="toggleFilter('clientInfo')">
+            <span>Client info</span>
+            <span class="arrow" [class.open]="filtersOpen['clientInfo']">&#9660;</span>
+          </div>
+          <div class="filter-content" *ngIf="filtersOpen['clientInfo']">
+            <div *ngFor="let info of clientInfo">
+              <label>
+                <input type="checkbox" />
+                {{ info.label }} <span class="count">({{ info.count }})</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Other filter groups (collapsed by default, just headers) -->
+        <div class="filter-group" *ngFor="let group of [
+          { key: 'clientHistory', label: 'Client history' },
+          { key: 'clientLocation', label: 'Client location' },
+          { key: 'clientTimeZones', label: 'Client time zones' },
+          { key: 'projectLength', label: 'Project length' },
+          { key: 'hoursPerWeek', label: 'Hours per week' },
+          { key: 'jobDuration', label: 'Job duration' }
+        ]">
+          <div class="filter-header" (click)="toggleFilter(group.key)">
+            <span>{{ group.label }}</span>
+            <span class="arrow" [class.open]="filtersOpen[group.key]">&#9660;</span>
+          </div>
+          <div class="filter-content" *ngIf="filtersOpen[group.key]">
+            <!-- Placeholder for future filter content -->
+          </div>
+        </div>
+      </div>
+    
+    <div class="content-wrapper">
+        <!-- <app-profile class="sidebar-container"></app-profile> -->
+        
+        <div class="projects-container">
+          <!-- Project Card 1 -->
+          <div class="project-card" style="position: relative;">
+            <div class="action-buttons">
+              <button class="action-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#656565" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </button>
+              <button class="action-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#656565" viewBox="0 0 16 16">
+                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="project-header">
+              <div class="posted-time">Posted 4 hours ago</div>
+              <h3 class="project-title">Experienced .NET Developer Required for Application Development</h3>
+            </div>
+            
+            <div class="project-meta">
+              <div class="meta-item">
+                <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
+                  <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
+                </svg>
+                Payment unverified
+              </div>
+              
+              <div class="meta-item rating">
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span>0</span>
+              </div>
+              
+              <div class="meta-item">
+                <span>$0 spent</span>
+              </div>
+              
+              <div class="meta-item">
+                <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                </svg>
+                Lebanon
+              </div>
+            </div>
+            
+            <div class="project-budget">Hourly: $15.00 - $50.00 · Intermediate · Est. time: 1 to 3 months, 30+ hrs/week</div>
+            
+            <div class="project-description">
+              We are seeking a highly talented .NET developer to build a robust application with a MySQL backend. The ideal candidate should have a strong background in application development using the .NET framework and be proficient in MySQL database management. Your role will involve...
+            </div>
+            
+            <div class="project-tags">
+              <div class="project-tag">.NET Framework</div>
+              <div class="project-tag">JavaScript</div>
+              <div class="project-tag">API</div>
+              <div class="project-tag">C#</div>
+              <div class="project-tag">Microsoft SQL Server</div>
+            </div>
+            
+            <div class="proposals-count">Proposals: 10 to 15</div>
+          </div>
+          
+          <!-- Project Card 2 -->
+          <div class="project-card" style="position: relative;">
+            <div class="action-buttons">
+              <button class="action-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#656565" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </button>
+              <button class="action-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#656565" viewBox="0 0 16 16">
+                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="project-header">
+              <div class="posted-time">Posted yesterday</div>
+              <h3 class="project-title">Agora Calling, Stripe Payments & AI Bot Integration</h3>
+            </div>
+            
+            <div class="project-meta">
+              <div class="meta-item">
+                <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
+                  <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
+                </svg>
+                Payment verified
+              </div>
+              
+              <div class="meta-item rating">
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span class="empty-star">★</span>
+                <span>0</span>
+              </div>
+              
+              <div class="meta-item">
+                <span>$0 spent</span>
+              </div>
+              
+              <div class="meta-item">
+                <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                </svg>
+                Pakistan
+              </div>
+            </div>
+            
+            <div class="project-budget">Fixed price - Expert - Est. budget: $400.00</div>
+            
+            <div class="project-description">
+              We are looking for an experienced Full-Stack .NET Developer to join us on an ongoing project for an online doctor appointment platform (web and mobile app). The scope of this phase includes: Project Requirements: Implement secure voice/video calling functionality using Agora SDK Integration...
+            </div>
+            
+            <div class="project-tags">
+              <div class="project-tag">API Integration</div>
+              <div class="project-tag">API</div>
+              <div class="project-tag">JavaScript</div>
+              <div class="project-tag">Python</div>
+            </div>
+            
+            <div class="proposals-count">Proposals: Less than 5</div>
+          </div>
+        </div>
+      </div>
+  </div>

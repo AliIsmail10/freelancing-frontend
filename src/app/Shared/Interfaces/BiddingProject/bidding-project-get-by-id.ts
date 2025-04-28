@@ -20,4 +20,8 @@ export interface BiddingProjectGetById {
   freelancersubscriptionPlan: string
   freelancerTotalNumber: number
   freelancerRemainingNumberOfBids: number
+  clientOtherProjectsIdsNotAssigned: number[]
+  numOfBids:number
+  clientProjectsTotalCount:number
+  clientId:string
 }

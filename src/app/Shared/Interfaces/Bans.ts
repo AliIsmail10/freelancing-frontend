@@ -6,4 +6,3 @@ export interface Ban {
     bannedUserId: string
     bannedUserName?: string
   }
-  

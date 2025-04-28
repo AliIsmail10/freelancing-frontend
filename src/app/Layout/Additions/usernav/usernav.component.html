@@ -14,7 +14,7 @@
                 </a>
                 <ul class="sub-menu children">
                     <li><a href="dashboard-insights.html">Insights</a></li>
-                    <li><a href="dashboard-insightsuser.html">Insights User</a></li>
+                    <li><a routerLink="/home2/dashboard">Dashboard User(freelancer)</a></li>
                 </ul>
             </li>
             <li>
@@ -53,6 +53,17 @@
                 </a>
             </li>
             <li>
+                <a routerLink="/home2/banned">
+                    <span>Banned Users</span>
+                </a>
+            </li>
+
+            <li>
+                <a routerLink="/home2/admin-dashboard">
+                    <span>Admin Dashboard</span>
+                </a>
+            </li>
+            <li>
                 <a href="dashboard-invocies.html">
                     <span>Invoices</span>
                 </a>
@@ -83,7 +94,7 @@
                 </a>
             </li>
             <li>
-                <a href="index-2.html">
+                <a (click)="logout()">
                     <span>Logout</span>
                 </a>
             </li>

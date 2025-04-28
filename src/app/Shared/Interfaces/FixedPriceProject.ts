@@ -34,5 +34,9 @@ export interface Milestone {
     projectSkills: string[]
     milestones: any[]
   }
-
-  // create project
+  export interface ProjectsResponse {
+    totalCount: number;
+    pageNumber: number;
+    pageSize: number;
+    projects: FixedPriceProject[];
+  }
