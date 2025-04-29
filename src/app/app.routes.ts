@@ -86,16 +86,11 @@ import { BiddingProjectNewComponent } from './Components/bidding-project-new/bid
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
 
 import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
-import { ProposalComponent } from './Components/proposal/proposal.component';
+// import { ProposalComponent } from './Layout/Pages/Proposal/proposal.component';
 import { Proposal2Component } from './Components/proposal2/proposal2.component';
 import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
 import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
-
-import { ProposalComponent } from './Components/proposal/proposal.component';
-import { Proposal2Component } from './Components/proposal2/proposal2.component';
-import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
-import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
-import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
+import { ProposalComponent } from './Layout/Pages/Proposal/proposal/proposal.component';
 
 
 
@@ -177,7 +172,8 @@ export const routes: Routes = [
           {path :'addAdmin',loadComponent: () => import('./Layout/Pages/add-admin/add-admin.component').then(m => m.AddAdminComponent)},
           {path: 'proposal2/:id',component: Proposal2Component},
           {path: 'Freelancers',component: FreelancersComponent},
-          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent}
+          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent},
+          // {path: 'proposal/:username',component: ProposalComponent}
 
         ]
       },
