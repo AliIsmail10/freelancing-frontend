@@ -84,13 +84,13 @@ import { UpdateBanComponent } from './Layout/Pages/update-ban/update-ban.compone
 import { TestComponent } from './Components/test/test.component';
 import { BiddingProjectNewComponent } from './Components/bidding-project-new/bidding-project-new.component';
 import { BiddingProjectDetailsComponent } from './Components/bidding-project-details/bidding-project-details.component';
-
-import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
-// import { ProposalComponent } from './Layout/Pages/Proposal/proposal.component';
-import { Proposal2Component } from './Components/proposal2/proposal2.component';
 import { FreelancersComponent } from './Layout/Pages/freelancers/freelancers.component';
+import { Proposal2Component } from './Components/proposal2/proposal2.component';
 import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/freelancer-profile.component';
-import { ProposalComponent } from './Layout/Pages/Proposal/proposal/proposal.component';
+import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
+import { ProposalComponent } from './Components/proposal/proposal.component';
+import { ProposalsComponent } from './Layout/Pages/Proposal/proposals/proposal.component';
+
 
 
 
@@ -136,10 +136,10 @@ export const routes: Routes = [
     {path:'milestone',component:MilestonesComponent,title:'milestone'},
     {path:'myprojects',component:MyProjectsComponent,title:'MyProjects'},
     {path: 'milestones/:projectId',component: MilestonesComponent},
-    {path: 'proposaldetails/:projectId',component: ProposalDetailsComponent,title:'ProposalDetails'},
+    {path: 'proposaldetails/:proposalId',component: ProposalDetailsComponent,title:'ProposalDetails'},
     {path: 'VerificationRequests',component: IdentityVerificationDeicisionComponent},
-    {path: 'proposals/:projectId',component: ProposalComponent,title:'proposals'},
-
+    {path: 'proposals/:projectId',component: ProposalsComponent,title:'proposals'},
+   
 
     {path:'register', loadComponent: () => import('./Layout/Pages/register/register.component').then(m => m.RegisterComponent)},
     {
