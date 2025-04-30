@@ -90,6 +90,7 @@ import { FreelancerProfileComponent } from './Layout/Pages/freelancer-profile/fr
 import { IdentityVerificationDeicisionComponent } from './Layout/Pages/identity-verification-deicision/identity-verification-deicision.component';
 import { ProposalComponent } from './Components/proposal/proposal.component';
 import { ProposalsComponent } from './Layout/Pages/Proposal/proposals/proposal.component';
+import { SuggestedProjectsComponent } from './Layout/Pages/Recommendation/suggested-projects/suggested-projects.component';
 
 
 
@@ -139,6 +140,7 @@ export const routes: Routes = [
     {path: 'proposaldetails/:proposalId',component: ProposalDetailsComponent,title:'ProposalDetails'},
     {path: 'VerificationRequests',component: IdentityVerificationDeicisionComponent},
     {path: 'proposals/:projectId',component: ProposalsComponent,title:'proposals'},
+    { path: 'suggested', component: SuggestedProjectsComponent },
    
 
     {path:'register', loadComponent: () => import('./Layout/Pages/register/register.component').then(m => m.RegisterComponent)},
@@ -172,7 +174,9 @@ export const routes: Routes = [
           {path :'addAdmin',loadComponent: () => import('./Layout/Pages/add-admin/add-admin.component').then(m => m.AddAdminComponent)},
           {path: 'proposal2/:id',component: Proposal2Component},
           {path: 'Freelancers',component: FreelancersComponent},
-          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent}
+          {path: 'Freelancerprofile/:username',component: FreelancerProfileComponent},
+         
+
 
         ]
       },
