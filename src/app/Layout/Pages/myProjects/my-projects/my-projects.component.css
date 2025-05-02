@@ -87,12 +87,19 @@
   
   .project-status.completed {
     background-color: #e4ebe4;
-    color: #5e6d55;
+    color: #14a800;
+    font-weight: bold;
   }
   
   .project-status.pending {
     background-color: #fff3d8;
     color: #bc7112;
+    font-weight: bold;
+  }
+  .milestone-status.in-progress {
+    background-color: #e4f4ff;
+    color: #0086ff;
+    font-weight: bold;
   }
   
   .project-description {

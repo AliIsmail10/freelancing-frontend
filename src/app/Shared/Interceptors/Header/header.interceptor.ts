@@ -1,7 +1,7 @@
-import { HttpInterceptorFn } from '@angular/common/http';
-import { AuthService } from '../../Services/Auth/auth.service';
-import { inject } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { HttpInterceptorFn } from "@angular/common/http";
+import { inject } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
+import { AuthService } from "../../Services/Auth/auth.service";
 
 export const headerInterceptor: HttpInterceptorFn = (req, next) => {
   const toastr = inject(ToastrService);
@@ -19,7 +19,6 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
       'X-Requested-With': 'XMLHttpRequest'
     };
 
-    // Only set Content-Type to application/json if body is not FormData
     const isFormData = req.body instanceof FormData;
     if (!isFormData) {
       headers['Content-Type'] = 'application/json';

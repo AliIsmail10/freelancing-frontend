@@ -33,6 +33,7 @@ export interface Milestone {
     proposalsCount: number
     projectSkills: string[]
     milestones: any[]
+    endDate:string
   }
   export interface ProjectsResponse {
     totalCount: number;

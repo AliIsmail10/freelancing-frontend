@@ -9,10 +9,11 @@ import { map } from 'rxjs/operators';
 import { TimeLeftPipe } from '../../Pipes/time-left.pipe';
 import { GetReviewsByRevieweeIdDto } from '../../Shared/Interfaces/get-reviews-by-reviewee-id-dto';
 import { ReviewService } from '../../Shared/Services/Review/review.service';
+import { FixedPriceProjectService } from '../../Shared/Services/FixedPriceProject/fixed-price-project.service';
 
 @Component({
   selector: 'app-bidding-project-details',
-  imports: [RouterModule,RouterOutlet, TimeAgoPipe, FormsModule, CommonModule, TimeLeftPipe],
+  imports: [RouterModule, TimeAgoPipe, FormsModule, CommonModule, TimeLeftPipe],
   templateUrl: './bidding-project-details.component.html',
   styleUrl: './bidding-project-details.component.css'
 })
@@ -20,7 +21,8 @@ export class BiddingProjectDetailsComponent implements OnInit {
 
   constructor(private biddingProjectDetailsService:BiddingProjectService,
      private route:ActivatedRoute,
-    private ReviewsService:ReviewService
+    private ReviewsService:ReviewService,
+    private FixedService:FixedPriceProjectService
     ){}
 
 
@@ -49,7 +51,9 @@ project: BiddingProjectGetById={
   clientOtherProjectsIdsNotAssigned:[],
   numOfBids:0,
   clientProjectsTotalCount:0,
-  clientId:''
+  clientId:'',
+  expectedDuration:0,
+  endDate:''
 };
 
 
@@ -104,22 +108,46 @@ project: BiddingProjectGetById={
           for (let projectId of this.project.clientOtherProjectsIdsNotAssigned) {
             if(projectId !== id){
               this.biddingProjectDetailsService.GetBiddingProjectById(projectId)
-              .pipe(
-                map(proj => ({ id: proj.id, title: proj.title, projectType:proj.projectType })) // select only id and title (as name)
-              )
+            
               .subscribe({
                 next: (data) => {
-                  this.clientOtherProjNameId.push(data);
-                  // If you want to store multiple, use an array instead
-                  console.log(this.project.clinetAccCreationDate)
+                  console.log(data)
+                  if(data != null){
+                    this.clientOtherProjNameId.push(data);
+                    // If you want to store multiple, use an array instead
+                    console.log(this.project.clinetAccCreationDate)
+
+                  }
+                  else{
+                    console.log("data is null")
+                    this.FixedService.getProjectById(projectId) .pipe(
+                      map(proj => ({ id: proj.id, title: proj.title, projectType:'Fixed Price' })) // select only id and title (as name)
+                    ).subscribe({
+                      next: (data)=> {
+                        this.clientOtherProjNameId.push(data);
+                      },
+                      error: (err)=> {console.log(err), console.log("niwnfoinewio")}
+                    })
+                   
+                  }
                 }
+
               });
             }
            
           }
         }
       },
-      error: (err) => console.log(err)
+      error: (err) => {
+        this.FixedService.getProjectById(id) .pipe(
+          map(proj => ({ id: proj.id, title: proj.title, projectType:'Fixed Price' })) // select only id and title (as name)
+        ).subscribe({
+          next: (data)=> {
+            this.clientOtherProjNameId.push(data);
+          },
+          error: (err)=> {console.log(err), console.log("niwnfoinewio")}
+        })
+        ,console.log(err),console.log("niwnfoinewio")}
     });
   }
 

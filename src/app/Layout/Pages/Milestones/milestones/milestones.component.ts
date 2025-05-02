@@ -24,7 +24,7 @@ export class MilestonesComponent implements OnInit{
     switch (status) {
       case 1: return 'Completed';
       case 2: return 'In Progress';
-      case 3: return 'Pending';
+      case 0: return 'Pending';
       default: return 'Unknown';
     }
   }

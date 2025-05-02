@@ -8,12 +8,13 @@ import { ActivatedRoute,Params, Router } from '@angular/router';
 @Component({
   selector: 'app-proposal',
   imports: [CommonModule],
-  templateUrl: './proposal.component.html',
-  styleUrl: './proposal.component.css'
+  templateUrl: './proposals.component.html',
+  styleUrl: './proposals.component.css'
 })
-export class ProposalComponent {
+export class ProposalsComponent {
 projectId: number = 0;
 proposals: ProposalView[] = [];
+proposalId: number = 0;
   
   constructor(private proposalService:ProposalService, private route: ActivatedRoute,private router: Router) { }
 
@@ -37,9 +38,9 @@ loadProposals(){
     }
   );
   }
-  getprojectById() {
-    this.router.navigate(['/proposaldetails', this.projectId]);
-    console.log('Navigating to project details for ID:', this.projectId);
+  getprojectById(proposalId: number) {
+    this.router.navigate(['/proposaldetails', proposalId]);
+    console.log('Navigating to project details for ID:', this.proposalId);
   }
  
 }

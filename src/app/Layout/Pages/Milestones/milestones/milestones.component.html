@@ -22,7 +22,7 @@
           [ngClass]="{
             'Completed': milestone.status === 1,
             'in-progress': milestone.status === 2,
-            'Pending': milestone.status === 3
+            'Pending': milestone.status === 0
           }">
           {{ getStatusText(milestone.status) }}
         </span>
@@ -59,11 +59,11 @@
                 <!-- Video Preview -->
                 <video *ngSwitchCase="'video'" [src]="file" controls class="milestone-video"></video>
         
-                <!-- Other Files Download -->
+                <!-- Others -->
                 <div *ngSwitchDefault class="file-item">
                   <i class="fas fa-file"></i>
                   <span>Attached File: 
-                    <a [href]="file" target="_blank" download>Download File</a>
+                    <a [href]="file" target="_blank" download>Open File</a>
                   </span>
                 </div>
               </ng-container>
